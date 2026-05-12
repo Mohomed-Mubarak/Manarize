@@ -9,11 +9,6 @@ import { formatPrice } from './utils.js';
 import { addToCart, toggleWishlist, isWishlisted } from './cart.js';
 import { initQuickSearch } from './search.js';
 import { injectSpeedInsights } from '@vercel/speed-insights';
-
-injectSpeedInsights();
-function esc(str) {
-  return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
 import { productCardHTML, bindCardEvents, skeletonCardHTML } from './product-card.js';
 import toast from './toast.js';
 import { LS, SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
