@@ -8,7 +8,9 @@ import { getAllReviews, getAllReviewsFlat } from './reviews.js';
 import { formatPrice } from './utils.js';
 import { addToCart, toggleWishlist, isWishlisted } from './cart.js';
 import { initQuickSearch } from './search.js';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
+injectSpeedInsights();
 function esc(str) {
   return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
