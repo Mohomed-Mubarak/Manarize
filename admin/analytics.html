@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+  <script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+  <style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Analytics — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <noscript>  <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+   >
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-analytics.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/admin/admin-analytics.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- KPI Cards -->
+  <div class="admin-kpi-grid" style="margin-bottom:1.5rem">
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-gold-bg);color:var(--clr-gold)"><i class="fa-solid fa-sack-dollar"></i></div>
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-value" id="an-revenue"><span class="skel-pulse" style="display:inline-block;width:80px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-info-bg);color:var(--clr-info)"><i class="fa-solid fa-clipboard-check"></i></div>
+      <div class="kpi-label">Paid Orders</div>
+      <div class="kpi-value" id="an-orders"><span class="skel-pulse" style="display:inline-block;width:40px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-success-bg);color:var(--clr-success)"><i class="fa-solid fa-chart-line"></i></div>
+      <div class="kpi-label">Avg Order Value</div>
+      <div class="kpi-value" id="an-aov"><span class="skel-pulse" style="display:inline-block;width:70px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-warning-bg);color:var(--clr-warning)"><i class="fa-solid fa-users"></i></div>
+      <div class="kpi-label">Conversion Rate</div>
+      <div class="kpi-value" id="an-conversion"><span class="skel-pulse" style="display:inline-block;width:50px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:1.5rem;margin-bottom:1.5rem">
+    <div class="admin-table-wrap" style="padding:1.5rem">
+      <h3 style="font-size:.9375rem;margin-bottom:1.5rem;font-weight:600">Monthly Revenue</h3>
+      <div style="position:relative;height:240px">
+        <canvas id="analytics-chart"></canvas>
+      </div>
+    </div>
+    <div class="admin-table-wrap" style="padding:1.5rem">
+      <h3 style="font-size:.9375rem;margin-bottom:1.5rem;font-weight:600">Revenue by Category</h3>
+      <div id="cat-breakdown">
+        <div style="color:var(--clr-text-3);font-size:.875rem;text-align:center;padding:2rem">
+          <i class="fa-solid fa-spinner fa-spin"></i> Loading…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders by Payment Method -->
+  <div class="admin-table-wrap" style="padding:1.5rem;margin-bottom:1.5rem">
+    <h3 style="font-size:.9375rem;margin-bottom:1.25rem;font-weight:600">Orders by Payment Method</h3>
+    <div id="payment-breakdown" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem"></div>
+  </div>
+
+  <!-- Top Products -->
+  <div class="admin-table-wrap">
+    <div class="admin-table-header">
+      <h3 style="font-size:.875rem;font-weight:600">Top Selling Products</h3>
+    </div>
+    <div class="table-wrap table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Units Sold</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody id="top-products">
+          <tr><td colspan="4" style="text-align:center;padding:2rem;color:var(--clr-text-3)"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="/dist/js/admin/admin-analytics.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+/* =============================================================================
+   ADMIN-NOTIFICATIONS.CSS — Admin Notifications & Messages Styles
+   -----------------------------------------------------------------------------
+   Purpose : Tabbed notification centre with alert items, collapsible message cards,
+   newsletter subscriber rows, and an empty state panel.
+=============================================================================== */
+
+/* ── Tabs ─────────────────────────────────────────── */
+    
+/* ── Tab Bar ─── Underline-style tab navigation (Alerts / Messages / Newsletter) */
+.n-tabs {
+      display: flex;
+      gap: .125rem;
+      border-bottom: 2px solid var(--clr-border);
+      margin-bottom: 1.75rem;
+    }
+    .n-tab {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.25rem;
+      border: none;
+      background: none;
+      font-family: var(--ff-body);
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--clr-text-3);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      border-radius: var(--r-md) var(--r-md) 0 0;
+      transition: color .15s, background .15s;
+    }
+    .n-tab:hover { color: var(--clr-text); background: var(--clr-surface); }
+    .n-tab.active { color: var(--clr-gold); border-bottom-color: var(--clr-gold); }
+    .n-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9999px;
+      font-size: .65rem;
+      font-weight: 700;
+      background: var(--clr-gold);
+      color: #0d0f14;
+      line-height: 1;
+    }
+    .n-badge-alert { background: var(--clr-error); color: #fff; }
+    .n-badge-msg   { background: var(--clr-info,#3498db); color: #fff; }
+
+    /* ── Toolbar ──────────────────────────────────────── */
+    
+/* ── Toolbar ─── Info text + bulk-action buttons above the list ─────────────── */
+.n-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+      min-height: 36px;
+    }
+    .n-toolbar__info { font-size: .875rem; color: var(--clr-text-3); }
+    .n-toolbar__actions { display: flex; gap: .5rem; }
+
+    /* ── Alert item ───────────────────────────────────── */
+    
+/* ── Alert Item ─── Single system alert row (icon + title + description) ────── */
+.alert-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--clr-border);
+      transition: background .12s;
+      border-radius: var(--r-lg);
+      margin-bottom: .25rem;
+    }
+    .alert-item:hover { background: var(--clr-surface-2); }
+    .alert-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .alert-body { flex: 1; min-width: 0; }
+    .alert-title {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--clr-text);
+      margin-bottom: .2rem;
+    }
+    .alert-desc { font-size: .8125rem; color: var(--clr-text-2); margin-bottom: .35rem; }
+    .alert-foot { display: flex; align-items: center; gap: .75rem; }
+    .alert-time { font-size: .75rem; color: var(--clr-text-3); font-family: var(--ff-mono); }
+    .alert-link { font-size: .75rem; color: var(--clr-gold); text-decoration: none; }
+    .alert-link:hover { text-decoration: underline; }
+
+    /* ── Message card ─────────────────────────────────── */
+    
+/* ── Message Card ─── Collapsible customer contact message ─────────────────── */
+.msg-card {
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-xl);
+      background: var(--clr-surface);
+      margin-bottom: .625rem;
+      overflow: hidden;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .msg-card:hover { border-color: var(--clr-border-2); box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+    .msg-card.unread {
+      border-left: 3px solid var(--clr-gold);
+      background: var(--clr-bg-2);
+    }
+    .msg-card__header {
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .msg-card__dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--clr-gold);
+      flex-shrink: 0;
+      box-shadow: 0 0 6px var(--clr-gold);
+    }
+    .msg-card__avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-gold-dim), var(--clr-gold));
+      color: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .msg-card__info { flex: 1; min-width: 0; }
+    .msg-card__name { font-weight: 600; font-size: .9375rem; color: var(--clr-text); }
+    .msg-card__subject {
+      font-size: .8125rem;
+      color: var(--clr-text-2);
+      margin-top: .1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .msg-card__time {
+      font-size: .75rem;
+      color: var(--clr-text-3);
+      font-family: var(--ff-mono);
+      flex-shrink: 0;
+    }
+    .msg-card__actions {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      flex-shrink: 0;
+    }
+    .msg-card__chevron {
+      color: var(--clr-text-3);
+      font-size: .75rem;
+      transition: transform .25s;
+      margin-left: .25rem;
+    }
+    .msg-card__chevron.open { transform: rotate(180deg); }
+
+    
+/* ── Message Body ─── Expandable content area (max-height slide animation) ── */
+.msg-card__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .msg-card__body.open { max-height: 800px; }
+    .msg-card__body-inner {
+      padding: 1.25rem;
+      border-top: 1px solid var(--clr-border);
+    }
+    .msg-field {
+      display: flex;
+      gap: .5rem;
+      font-size: .8125rem;
+      margin-bottom: .5rem;
+    }
+    .msg-field__label { color: var(--clr-text-3); min-width: 58px; font-weight: 500; }
+    .msg-field__val { color: var(--clr-text-2); word-break: break-word; }
+    .msg-message {
+      margin-top: .875rem;
+      padding: 1rem 1.125rem;
+      background: var(--clr-bg-2);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--clr-border);
+      font-size: .875rem;
+      color: var(--clr-text);
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    .msg-card__footer {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: .875rem;
+      border-top: 1px solid var(--clr-border);
+    }
+
+    /* ── Newsletter ───────────────────────────────────── */
+    
+/* ── Newsletter Row ─── Single email subscriber row ─────────────────────────── */
+.nl-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .875rem 1.25rem;
+      border-bottom: 1px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      transition: background .12s;
+    }
+    .nl-row:hover { background: var(--clr-surface-2); }
+    .nl-num { font-size: .8125rem; color: var(--clr-text-3); width: 2rem; flex-shrink: 0; }
+    .nl-email { flex: 1; font-family: var(--ff-mono); font-size: .875rem; color: var(--clr-text); }
+    .nl-date { font-size: .8125rem; color: var(--clr-text-3); }
+
+    /* ── Empty state ──────────────────────────────────── */
+    
+/* ── Empty State ────────────────────────────────────────────────────────────── */
+.n-empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--clr-text-3);
+    }
+    .n-empty__icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.5rem;
+    }
+    .n-empty h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--clr-text-2);
+      margin: 0 0 .4rem;
+    }
+    .n-empty p { font-size: .875rem; margin: 0; }
+
+    /* ── Icon action btn ──────────────────────────────── */
+    
+/* ── Icon Action Button ─── Small square button used for actions (delete etc.) */
+.icon-btn {
+      width: 32px; height: 32px;
+      border-radius: var(--r-md);
+      background: none;
+      border: 1px solid var(--clr-border);
+      color: var(--clr-text-3);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem;
+      transition: all .12s;
+    }
+    .icon-btn:hover { background: var(--clr-surface-2); border-color: var(--clr-border-2); color: var(--clr-text); }
+    .icon-btn.del:hover { color: var(--clr-error); border-color: rgba(231,76,60,.3); background: var(--clr-error-bg); }
+
+    /* page header */
+    
+/* ── Page Header ────────────────────────────────────────────────────────────── */
+.n-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .n-page-header h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin: 0 0 .2rem;
+      font-family: var(--ff-display);
+    }
+    .n-page-header p { font-size: .875rem; color: var(--clr-text-3); margin: 0; }

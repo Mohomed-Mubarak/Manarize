@@ -1,0 +1,354 @@
+/* =============================================================================
+   SHOP.CSS — Shop Listing Page — v30 Full Mobile Rewrite
+   =============================================================================*/
+
+/* ━━ MOBILE FILTER TOGGLE — hidden on desktop ━━━━━━━━━━━━━━ */
+.mobile-filter-toggle { display: none; }
+
+@media (max-width: 900px) {
+  .mobile-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    min-height: 44px;
+    padding: var(--sp-2) var(--sp-5);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-md);
+    background: var(--clr-surface);
+    color: var(--clr-text-2);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+    transition: border-color var(--t-fast), color var(--t-fast);
+  }
+  .mobile-filter-toggle:hover,
+  .mobile-filter-toggle:active {
+    border-color: var(--clr-gold);
+    color: var(--clr-gold);
+  }
+}
+
+/* ━━ SIDEBAR OVERLAY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--clr-overlay);
+  z-index: calc(var(--z-modal) - 1);
+  display: none;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.sidebar-overlay.open { display: block; }
+
+/* ━━ SIDEBAR — OFF-CANVAS DRAWER on mobile ━━━━━━━━━━━━━━━━━ */
+@media (max-width: 900px) {
+  .shop-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: var(--z-modal);
+    transform: translateX(-110%);
+    transition: transform var(--t-slow), box-shadow var(--t-slow);
+    border-radius: 0;
+    width: min(300px, 82vw);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(var(--sp-8) + env(safe-area-inset-bottom));
+    will-change: transform;
+    overscroll-behavior: contain;
+  }
+  .shop-sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* ━━ SHOP LAYOUT — 2-col desktop, 1-col mobile ━━━━━━━━━━━━━ */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-8);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* ━━ PAGE HEADER — compact on mobile ━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  .page-header {
+    padding: var(--sp-8) 0 var(--sp-6);
+  }
+  .page-header h1 {
+    font-size: var(--fs-3xl);
+    margin-bottom: var(--sp-1);
+  }
+  .page-header p {
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+}
+@media (max-width: 480px) {
+  .page-header {
+    padding: var(--sp-6) 0 var(--sp-5);
+  }
+  .page-header h1 { font-size: var(--fs-2xl); }
+  .breadcrumb { font-size: var(--fs-xs); margin-bottom: var(--sp-2) !important; }
+}
+
+/* ━━ SECTION PADDING — reduce on mobile ━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  .section-sm { padding: var(--sp-6) 0; }
+}
+@media (max-width: 480px) {
+  .section-sm { padding: var(--sp-4) 0; }
+}
+
+/* ━━ FILTER BUTTON ROW — tight spacing, full width ━━━━━━━━━ */
+@media (max-width: 900px) {
+  #mobile-filter-btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: var(--sp-4) !important;
+  }
+}
+@media (max-width: 640px) {
+  #mobile-filter-btn {
+    width: 100%;
+    min-height: 46px;
+    font-size: var(--fs-base);
+    border-radius: var(--r-lg);
+  }
+}
+
+/* ━━ SHOP TOOLBAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.shop-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+  flex-wrap: wrap;
+}
+.shop-results {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-3);
+  white-space: nowrap;
+}
+.shop-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+/* Tablet: search + sort side by side */
+@media (max-width: 768px) {
+  .shop-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+  }
+  .shop-toolbar-right {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--sp-2);
+    width: 100%;
+  }
+  .shop-toolbar-right .search-bar {
+    width: 100% !important; /* override inline style */
+  }
+  .shop-toolbar-right .search-bar input {
+    min-height: 44px;
+    width: 100%;
+  }
+  .shop-toolbar-right .search-bar button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .shop-toolbar-right select {
+    min-height: 44px;
+    width: auto !important; /* override inline style */
+    white-space: nowrap;
+  }
+}
+
+/* Mobile: count + sort inline, search full-width above */
+@media (max-width: 480px) {
+  .shop-toolbar {
+    gap: var(--sp-2);
+  }
+  .shop-results {
+    font-size: var(--fs-xs);
+  }
+  .shop-toolbar-right {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+/* ━━ PRODUCTS GRID — THE KEY FIX ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   minmax(220px,1fr) breaks on ~390px phones (220×2=440 > viewport).
+   Force exactly 2 columns on mobile to eliminate overflow.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-5);
+}
+
+/* Skip rendering off-screen product cards — reduces layout work on long pages */
+.products-grid .product-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 360px; /* approximate card height */
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--sp-4);
+  }
+}
+
+/* Hard 2-col below 640px — prevents overflow completely */
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-3);
+  }
+}
+
+/* Ultra-narrow: still 2 cols but tighter gap */
+@media (max-width: 360px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-2);
+  }
+}
+
+/* ━━ SKELETON PLACEHOLDERS — match card aspect on mobile ━━━ */
+@media (max-width: 640px) {
+  .products-grid .skeleton {
+    height: 260px !important;
+  }
+}
+@media (max-width: 400px) {
+  .products-grid .skeleton {
+    height: 220px !important;
+  }
+}
+
+/* ━━ PRODUCT CARD — mobile tweaks ━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 640px) {
+  .product-card { border-radius: var(--r-lg); }
+  .product-card__image { aspect-ratio: 1 / 1; border-radius: var(--r-lg) var(--r-lg) 0 0; }
+  .product-card__body { padding: var(--sp-3) var(--sp-3) var(--sp-4); }
+  /* Fixed: was .product-card__title (non-existent), real class is __name */
+  .product-card__name {
+    font-size: var(--fs-sm);
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--sp-2);
+  }
+  .product-card__price { font-size: var(--fs-base); }
+  .product-card__compare { font-size: var(--fs-xs); }
+  /* Fixed: was .product-card__btn (non-existent), real classes are __cart-btn / __buy-btn */
+  .product-card__cart-btn,
+  .product-card__buy-btn,
+  .btn-add-cart {
+    justify-content: center;
+    min-height: 40px;
+    font-size: var(--fs-xs);
+    padding: var(--sp-2) var(--sp-2);
+    border-radius: var(--r-md);
+  }
+  /* Badge — smaller on mobile */
+  .product-card .badge-discount {
+    font-size: 9px;
+    padding: 2px 6px;
+    top: var(--sp-2);
+    left: var(--sp-2);
+  }
+  /* Category label */
+  .product-card__category {
+    font-size: 9px;
+    letter-spacing: .06em;
+    margin-bottom: var(--sp-1);
+  }
+  /* Fixed: was .product-card__quick-actions (non-existent), real class is __actions */
+  .product-card__actions { opacity: 1; transform: none; }
+  /* Fixed: __btns is hover-only — always show on touch screens */
+  .product-card__btns { opacity: 1; transform: translateY(0); }
+}
+
+/* ━━ ACTIVE FILTER PILLS — wrap on mobile ━━━━━━━━━━━━━━━━━━ */
+.active-filters {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+@media (max-width: 640px) {
+  .active-filters { gap: var(--sp-1); margin-bottom: var(--sp-3); }
+  .filter-pill {
+    font-size: var(--fs-xs);
+    padding: 3px 10px;
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+}
+
+/* ━━ EMPTY STATE — centered on mobile ━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 640px) {
+  .empty-state {
+    padding: var(--sp-12) var(--sp-4);
+    text-align: center;
+  }
+  .empty-state i { font-size: var(--fs-3xl); margin-bottom: var(--sp-4); }
+  .empty-state h3 { font-size: var(--fs-xl); }
+  .empty-state p { font-size: var(--fs-sm); }
+  #reset-shop { min-height: 44px; padding: var(--sp-2) var(--sp-6); }
+}
+
+/* ━━ LOAD MORE BUTTON ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 640px) {
+  #load-more-btn {
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: var(--fs-base);
+    margin-top: var(--sp-4) !important;
+  }
+}
+
+/* ━━ SIDEBAR FILTER ITEMS — better touch targets inside ━━━━━ */
+@media (max-width: 900px) {
+  .shop-sidebar .checkbox-group {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    padding: var(--sp-1) 0;
+  }
+  .shop-sidebar .checkbox-group input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--clr-gold);
+  }
+  .shop-sidebar .checkbox-group span { font-size: var(--fs-sm); }
+  .shop-sidebar input[type="range"] { width: 100%; }
+  .shop-sidebar .subcat-pills { gap: var(--sp-2); }
+  .shop-sidebar .subcat-pill { min-height: 34px; font-size: var(--fs-xs); }
+}
+
+/* ━━ PREVENT BODY SCROLL when sidebar is open ━━━━━━━━━━━━━━ */
+body.sidebar-open { overflow: hidden; }

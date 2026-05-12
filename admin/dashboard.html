@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dashboard — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <noscript>  <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+   >
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-dashboard.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/admin/admin-dashboard.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- KPI Grid -->
+  <div class="admin-kpi-grid dash-section">
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-gold-bg);color:var(--clr-gold)"><i class="fa-solid fa-sack-dollar"></i></div>
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-value" id="kpi-revenue"><span class="skel-pulse" style="display:inline-block;width:80px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+      <div class="kpi-change up"><i class="fa-solid fa-arrow-up"></i> All time</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-info-bg);color:var(--clr-info)"><i class="fa-solid fa-clipboard-list"></i></div>
+      <div class="kpi-label">Total Orders</div>
+      <div class="kpi-value" id="kpi-orders"><span class="skel-pulse" style="display:inline-block;width:40px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-success-bg);color:var(--clr-success)"><i class="fa-solid fa-calendar-day"></i></div>
+      <div class="kpi-label">Orders Today</div>
+      <div class="kpi-value" id="kpi-today"><span class="skel-pulse" style="display:inline-block;width:30px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-warning-bg);color:var(--clr-warning)"><i class="fa-solid fa-clock"></i></div>
+      <div class="kpi-label">Pending</div>
+      <div class="kpi-value" id="kpi-pending"><span class="skel-pulse" style="display:inline-block;width:30px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-gold-bg);color:var(--clr-gold)"><i class="fa-solid fa-store"></i></div>
+      <div class="kpi-label">Products</div>
+      <div class="kpi-value" id="kpi-products"><span class="skel-pulse" style="display:inline-block;width:40px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:var(--clr-info-bg);color:var(--clr-info)"><i class="fa-solid fa-users"></i></div>
+      <div class="kpi-label">Customers</div>
+      <div class="kpi-value" id="kpi-customers"><span class="skel-pulse" style="display:inline-block;width:40px;height:1.4em;border-radius:4px;background:var(--clr-surface-2)"></span></div>
+    </div>
+  </div>
+
+  <!-- Revenue Chart + Low Stock -->
+  <div class="dash-chart-row dash-section">
+    <div class="admin-table-wrap" style="padding:1.25rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <h3 style="font-size:.9375rem;font-weight:600">Revenue Overview</h3>
+        <span class="live-dot">Live</span>
+      </div>
+      <div class="dash-chart-wrap"><canvas id="revenue-chart"></canvas></div>
+    </div>
+    <div class="admin-table-wrap">
+      <div class="admin-table-header">
+        <h3 style="font-size:.875rem;font-weight:600">⚠️ Low Stock</h3>
+      </div>
+      <div id="low-stock-list">
+        <div style="padding:1.5rem;color:var(--clr-text-3);font-size:.875rem;text-align:center">
+          <i class="fa-solid fa-spinner fa-spin"></i> Loading…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Orders -->
+  <div class="admin-table-wrap dash-section">
+    <div class="admin-table-header">
+      <h3 style="font-size:.875rem;font-weight:600">Recent Orders</h3>
+      <a href="orders.html" class="btn btn-ghost btn-sm">View All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="table-wrap table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th class="d-hide-sm">Total</th>
+            <th>Status</th>
+            <th class="d-hide-sm">Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="recent-orders">
+          <tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--clr-text-3)"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Delivery Zones -->
+  <div class="admin-table-wrap dash-section">
+    <div class="admin-table-header">
+      <h3 style="font-size:.875rem;font-weight:600;display:flex;align-items:center;gap:.5rem">
+        <i class="fa-solid fa-truck" style="color:var(--clr-gold)"></i>
+        Delivery Zones
+      </h3>
+      <a href="shipping.html" class="btn btn-ghost btn-sm">Edit <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div id="dash-delivery-zones" class="dash-zones-grid">
+      <div style="color:var(--clr-text-3);font-size:.875rem;text-align:center;padding:1rem;grid-column:1/-1">
+        <i class="fa-solid fa-spinner fa-spin"></i> Loading…
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Reviews -->
+  <div class="admin-table-wrap dash-section">
+    <div class="admin-table-header">
+      <h3 style="font-size:.875rem;font-weight:600;display:flex;align-items:center;gap:.5rem">
+        <i class="fa-solid fa-star" style="color:var(--clr-gold)"></i>
+        Recent Reviews
+        <span id="dash-pending-reviews-badge" style="display:none;background:var(--clr-warning,#f59e0b);color:#000;font-size:.65rem;font-weight:700;border-radius:20px;padding:.1rem .45rem;line-height:1.4"></span>
+      </h3>
+      <a href="reviews.html" class="btn btn-ghost btn-sm">Manage <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="table-wrap table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th class="d-hide-sm">Product</th>
+            <th>Rating</th>
+            <th class="d-hide-sm">Review</th>
+            <th>Status</th>
+            <th class="d-hide-sm">Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="recent-reviews">
+          <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--clr-text-3)"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="/dist/js/admin/admin-dashboard.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

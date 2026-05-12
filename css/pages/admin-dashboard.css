@@ -1,0 +1,81 @@
+/* =============================================================================
+   ADMIN-DASHBOARD.CSS — Admin Dashboard Page Styles
+   -----------------------------------------------------------------------------
+   Purpose : Responsive KPI grid, chart + low-stock two-column layout, delivery zone grid,
+   skeleton shimmer, and content-visibility for off-screen sections.
+=============================================================================== */
+
+/* Dashboard grid: chart + low-stock side by side → stack on mobile */
+    
+/* ── Chart Row ─── Two-column layout: chart + low-stock; stacks on mobile ─── */
+.dash-chart-row {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 900px) { .dash-chart-row { grid-template-columns: 1fr; } }
+
+    /* KPI: 3-col desktop, 2-col mobile */
+    
+/* ── KPI Cards Grid ─── 3-col → 2-col → compact per breakpoint ─────────────── */
+.admin-kpi-grid { grid-template-columns: repeat(3,1fr); }
+    @media (max-width: 900px)  { .admin-kpi-grid { grid-template-columns: repeat(2,1fr); gap:.75rem; } }
+    @media (max-width: 480px)  {
+      .admin-kpi-grid { gap:.5rem; }
+      .kpi-card { padding:.875rem; }
+      .kpi-value { font-size:1.25rem !important; }
+      .kpi-label { font-size:.7rem !important; }
+      .kpi-icon  { width:32px !important; height:32px !important; font-size:.875rem !important; }
+      .kpi-change { font-size:.65rem !important; }
+    }
+
+    /* Chart height responsive */
+    
+/* ── Chart Canvas Height ────────────────────────────────────────────────────── */
+.dash-chart-wrap { position:relative; height:220px; }
+    @media (max-width: 640px) { .dash-chart-wrap { height:175px; } }
+
+    /* Table header wraps on mobile */
+    @media (max-width: 640px) {
+      .admin-table-header { flex-wrap:wrap; gap:.5rem; padding:.75rem 1rem; }
+      .admin-table-header h3 { font-size:.8125rem !important; }
+    }
+
+    /* Hide columns on small screens */
+    @media (max-width: 640px) {
+      .d-hide-sm { display:none !important; }
+    }
+
+    /* Delivery zones responsive grid */
+    
+/* ── Delivery Zones Grid ────────────────────────────────────────────────────── */
+.dash-zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: .75rem;
+      padding: .75rem 1.25rem 1.25rem;
+    }
+    @media (max-width: 900px) {
+      .dash-zones-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .dash-zones-grid { grid-template-columns: repeat(2, 1fr); gap:.5rem; padding:.625rem .875rem 1rem; }
+    }
+
+    /* Section spacing */
+    .dash-section { margin-bottom:1.25rem; }
+    @media (max-width: 640px) { .dash-section { margin-bottom:.875rem; } }
+
+    /* Skeleton shimmer for instant perceived load */
+    
+/* ── Skeleton Shimmer ─── Placeholder pulse animation ──────────────────────── */
+@keyframes skelShimmer {
+      0%   { opacity: .5; }
+      50%  { opacity: 1; }
+      100% { opacity: .5; }
+    }
+    .skel-pulse { animation: skelShimmer 1.4s ease-in-out infinite; }
+
+    /* content-visibility intentionally removed — it caused chart canvas to have 0 width
+       when Chart.js tried to render, resulting in a black/empty chart area. */

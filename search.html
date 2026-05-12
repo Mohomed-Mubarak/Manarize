@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Search — Manarize</title>
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/search.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/search-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <div class="page-header">
+      <div class="container">
+        <h1 id="search-heading">Search Results</h1>
+        <!-- Search bar -->
+        <div class="search-bar" style="max-width:560px;margin-top:1.25rem">
+          <input type="text" id="main-search" placeholder="Search products, categories…" autocomplete="off">
+          <button id="search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container section-sm">
+      <div id="search-results-grid" class="products-grid">
+        <div class="skeleton" style="height:340px;border-radius:8px"></div>
+        <div class="skeleton" style="height:340px;border-radius:8px"></div>
+        <div class="skeleton" style="height:340px;border-radius:8px"></div>
+      </div>
+      <div id="search-empty" class="empty-state" style="display:none">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3 id="empty-heading">No results found</h3>
+        <p>Try a different keyword or browse our categories.</p>
+        <a href="shop.html" class="btn btn-primary">Browse All Products</a>
+      </div>
+    </div>
+  </main>
+<script type="module" src="/dist/js/search-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* ============================================================
+   ZENMARKET — ADMIN PRODUCT EDIT  page-specific styles
+   ============================================================ */
+
+/* ── Hashtag Input ─────────────────────────────────────────── */
+.hashtag-input-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .375rem;
+  min-height: 44px;
+  padding: .375rem .625rem;
+  background: var(--clr-bg-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  cursor: text;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.hashtag-input-wrap:focus-within {
+  border-color: var(--clr-gold);
+  box-shadow: 0 0 0 3px var(--clr-gold-bg, rgba(201,168,76,.15));
+}
+
+.hashtag-pills {
+  display: contents;
+}
+
+.hashtag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .2rem .55rem;
+  background: var(--clr-gold-bg, rgba(201,168,76,.15));
+  color: var(--clr-gold);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: var(--r-full);
+  font-size: .8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.hashtag-pill__remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--clr-gold);
+  opacity: .6;
+  font-size: .65rem;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--t-fast);
+}
+.hashtag-pill__remove:hover { opacity: 1; }
+
+.hashtag-input {
+  flex: 1;
+  min-width: 160px;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--clr-text);
+  font-size: var(--fs-sm);
+  padding: .125rem .25rem;
+  line-height: 1.5;
+}
+.hashtag-input::placeholder { color: var(--clr-text-3); }
+
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: .7rem;
+  font-family: var(--ff-mono);
+  background: var(--clr-surface-2, #1e2330);
+  border: 1px solid var(--clr-border);
+  border-radius: 3px;
+  color: var(--clr-text-2);
+}
+
+/* ── SEO Section ───────────────────────────────────────────── */
+.seo-char-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .35rem;
+}
+
+.seo-counter {
+  font-family: var(--ff-mono);
+  font-size: .75rem;
+  color: var(--clr-text-3);
+  transition: color var(--t-fast);
+}
+.seo-counter.good { color: var(--clr-success, #4ade80); }
+.seo-counter.over { color: var(--clr-error,   #f87171); font-weight: 600; }
+
+.seo-preview-label {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--clr-text-3);
+  margin-top: 1.25rem;
+  margin-bottom: .625rem;
+}
+
+.seo-preview {
+  background: var(--clr-bg-3, #0d0f14);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  padding: .875rem 1rem;
+}
+.seo-preview__url {
+  font-size: .75rem;
+  color: #34a853;
+  font-family: var(--ff-mono);
+  margin-bottom: .3rem;
+  word-break: break-all;
+}
+.seo-preview__title {
+  font-size: 1.0625rem;
+  color: #8ab4f8;
+  font-weight: 500;
+  margin-bottom: .35rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+.seo-preview__desc {
+  font-size: .8125rem;
+  color: var(--clr-text-2);
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+/* ── Image Upload — progress states ────────────────────────── */
+.image-upload-zone.uploading {
+  border-color: var(--clr-gold);
+  background: var(--clr-gold-bg, rgba(201,168,76,.07));
+  pointer-events: none;
+}
+
+.img-preview-item--pending {
+  border: 1px dashed var(--clr-border);
+  border-radius: var(--r-md);
+  background: var(--clr-bg-2);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-upload-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--clr-text-3);
+  word-break: break-all;
+}

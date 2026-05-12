@@ -1,0 +1,61 @@
+/* =============================================================================
+   ADMIN-CATEGORIES.CSS — Admin Category Management Styles
+   -----------------------------------------------------------------------------
+   Purpose : Sub-category tag pills (with remove button), expand/collapse button for
+   the sub-category tree row in the admin table.
+=============================================================================== */
+
+
+/* ── Sub-Category Tag Pill ─── Inline chip showing a child category ──────────── */
+.subcat-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: 2px .5rem;
+      background: var(--clr-bg-2);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-full);
+      font-size: .7rem;
+      color: var(--clr-text-2);
+      margin: .15rem;
+    }
+
+    .subcat-tag .remove-sub {
+      color: var(--clr-text-3);
+      cursor: pointer;
+      font-size: .65rem;
+      line-height: 1;
+      background: none;
+      border: none;
+      padding: 0 0 0 2px;
+    }
+
+    .subcat-tag .remove-sub:hover {
+      color: var(--clr-error)
+    }
+
+    
+/* ── Expand / Collapse Button ─── Rotates 90° when the row is open ──────────── */
+.expand-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--clr-text-3);
+      padding: 0 .25rem;
+      transition: transform .2s
+    }
+
+    .expand-btn.open {
+      transform: rotate(90deg)
+    }
+
+    
+/* ── Sub-Category Table Row ─── Indented child row in the categories table ── */
+.subcat-row {
+      background: var(--clr-bg-2)
+    }
+
+    .subcat-row td {
+      padding: .5rem .75rem .5rem 3.5rem !important;
+      border-bottom: 1px dashed var(--clr-border)
+    }

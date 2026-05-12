@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Messages — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-notifications.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/pages/admin-notifications-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- Page content (will be moved into admin shell by injectAdminLayout) -->
+  <div id="notif-page-root">
+
+    <div class="n-page-header">
+      <div>
+        <h2>Messages &amp; Alerts</h2>
+        <p>System alerts, contact messages and newsletter subscribers</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="refresh-btn">
+        <i class="fa-solid fa-arrows-rotate"></i> Refresh
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="n-tabs">
+      <button class="n-tab active" data-tab="alerts">
+        <i class="fa-solid fa-bell"></i> Alerts
+        <span class="n-badge n-badge-alert" id="alert-badge" style="display:none"></span>
+      </button>
+      <button class="n-tab" data-tab="messages">
+        <i class="fa-solid fa-envelope"></i> Contact Messages
+        <span class="n-badge n-badge-msg" id="msg-badge" style="display:none"></span>
+      </button>
+      <button class="n-tab" data-tab="newsletter">
+        <i class="fa-solid fa-paper-plane"></i> Newsletter
+        <span class="n-badge" id="nl-badge" style="display:none"></span>
+      </button>
+    </div>
+
+    <!-- Alerts tab -->
+    <div id="tab-alerts">
+      <div class="n-toolbar">
+        <span class="n-toolbar__info" id="alert-info"></span>
+      </div>
+      <div id="alerts-list"></div>
+    </div>
+
+    <!-- Messages tab -->
+    <div id="tab-messages" style="display:none">
+      <div class="n-toolbar" id="msg-toolbar">
+        <span class="n-toolbar__info" id="msg-info"></span>
+        <div class="n-toolbar__actions" id="msg-actions"></div>
+      </div>
+      <div id="msg-list"></div>
+    </div>
+
+    <!-- Newsletter tab -->
+    <div id="tab-newsletter" style="display:none">
+      <div class="n-toolbar">
+        <span class="n-toolbar__info" id="nl-info"></span>
+        <div class="n-toolbar__actions">
+          <button class="btn btn-ghost btn-sm" id="nl-export-btn" style="display:none">
+            <i class="fa-solid fa-download"></i> Export CSV
+          </button>
+        </div>
+      </div>
+      <div id="nl-list"></div>
+    </div>
+
+  </div><!-- /notif-page-root -->
+
+<script type="module" src="/dist/js/pages/admin-notifications-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

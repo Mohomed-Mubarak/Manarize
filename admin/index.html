@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Admin Login — Manarize</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-index.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/pages/admin-index-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <div class="admin-login-card anim-scale-in">
+    <div class="admin-login-logo">
+      <div class="logo">Manarize</div>
+      <div class="sub">Admin Panel</div>
+    </div>
+
+    <!-- ── Step 1: Email + Password ─────────────────────────── -->
+    <form id="admin-login-form" novalidate>
+      <div class="form-group">
+        <label class="form-label required">Email Address</label>
+        <div class="input-group">
+          <i class="input-icon fa-solid fa-envelope"></i>
+          <input class="form-control" type="email" id="email" placeholder="admin@yourdomain.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label required">Password</label>
+        <div class="input-group">
+          <i class="input-icon fa-solid fa-lock"></i>
+          <input class="form-control" type="password" id="password" placeholder="Your admin password" required>
+        </div>
+      </div>
+
+      <div id="login-error" style="display:none;background:var(--clr-error-bg);color:var(--clr-error);padding:.75rem 1rem;border-radius:var(--r-md);font-size:.875rem;margin-bottom:1rem;gap:.5rem;align-items:center">
+        <i class="fa-solid fa-triangle-exclamation"></i> <span id="login-error-text">Invalid credentials. Please try again.</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-btn">
+        <i class="fa-solid fa-lock"></i> Sign In to Admin
+      </button>
+    </form>
+
+    <!-- ── Step 2: Magic Link Sent ────────────────────────────── -->
+    <div id="magic-link-step" style="display:none">
+      <div style="text-align:center;margin-bottom:1.75rem">
+        <div style="width:56px;height:56px;border-radius:16px;background:var(--clr-gold-bg);color:var(--clr-gold);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1rem">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+        </div>
+        <div style="font-size:1rem;font-weight:600;color:var(--clr-text);margin-bottom:.5rem">Magic link sent!</div>
+        <div style="font-size:.875rem;color:var(--clr-text-3);line-height:1.7">
+          A secure sign-in link was sent to<br>
+          <strong id="magic-email-display" style="color:var(--clr-text-2)"></strong><br>
+          <span style="font-size:.8125rem">Open the email and click the link to access the admin dashboard.</span>
+        </div>
+      </div>
+
+      <div style="background:var(--clr-bg-2);border:1px solid var(--clr-border);border-radius:var(--r-md);padding:.875rem 1rem;font-size:.8125rem;color:var(--clr-text-3);line-height:1.6;margin-bottom:1.25rem">
+        <i class="fa-solid fa-circle-info" style="color:var(--clr-gold);margin-right:.35rem"></i>
+        The link expires in <strong style="color:var(--clr-text-2)">1 hour</strong>. Check your spam folder if it doesn't arrive within a minute.
+      </div>
+
+      <div style="text-align:center">
+        <button type="button" id="magic-back-btn"
+          style="background:none;border:none;color:var(--clr-text-3);font-size:.8125rem;cursor:pointer;padding:.375rem .75rem;border-radius:var(--r-sm)">
+          <i class="fa-solid fa-arrow-left"></i> Back to login
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.25rem">
+      <a href="../index.html" style="font-size:.8125rem;color:var(--clr-text-3)">
+        <i class="fa-solid fa-arrow-left"></i> Back to Store
+      </a>
+    </div>
+  </div>
+
+<script type="module" src="/dist/js/pages/admin-index-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

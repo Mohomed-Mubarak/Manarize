@@ -1,0 +1,247 @@
+/* ============================================================
+   ZENMARKET — CSS VARIABLES / DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  /* ── Palette ─────────────────────────────────────────── */
+  --clr-bg:           #0d0f14;
+  --clr-bg-2:         #12151c;
+  --clr-bg-3:         #181c26;
+  --clr-surface:      #1e2330;
+  --clr-surface-2:    #252b3b;
+  --clr-border:       #2a3045;
+  --clr-border-2:     #333d55;
+
+  --clr-gold:         #c9a84c;
+  --clr-gold-light:   #e2c06e;
+  --clr-gold-dim:     #a07a30;
+  --clr-gold-bg:      rgba(201,168,76,.10);
+
+  --clr-text:         #e8eaf0;
+  --clr-text-2:       #a0a8bc;
+  --clr-text-3:       #667080;
+  --clr-text-inv:     #0d0f14;
+
+  --clr-success:      #2ecc71;
+  --clr-success-bg:   rgba(46,204,113,.12);
+  --clr-warning:      #f39c12;
+  --clr-warning-bg:   rgba(243,156,18,.12);
+  --clr-error:        #e74c3c;
+  --clr-error-bg:     rgba(231,76,60,.12);
+  --clr-info:         #3498db;
+  --clr-info-bg:      rgba(52,152,219,.12);
+
+  --clr-whatsapp:     #25D366;
+  --clr-overlay:      rgba(13,15,20,.85);
+
+  /* ── Accent (violet — used for badges, highlights) ───── */
+  --clr-violet:       #8b5cf6;
+  --clr-violet-light: #a78bfa;
+  --clr-violet-bg:    rgba(139,92,246,.12);
+
+  /* ── New radius tokens ───────────────────────────────── */
+  --r-2xl:  16px;
+  --r-3xl:  24px;
+
+  /* ── Version ─────────────────────────────────────────── */
+  --zm-version: "30";
+
+  /* ── Typography ──────────────────────────────────────── */
+  --ff-display:  'Playfair Display', Georgia, serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --ff-mono:     'JetBrains Mono', 'Courier New', monospace;
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   1.25rem;
+  --fs-xl:   1.5rem;
+  --fs-2xl:  1.875rem;
+  --fs-3xl:  2.25rem;
+  --fs-4xl:  3rem;
+  --fs-5xl:  3.75rem;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  --lh-tight:  1.2;
+  --lh-snug:   1.4;
+  --lh-normal: 1.6;
+  --lh-loose:  1.8;
+
+  /* ── Spacing (8-point) ───────────────────────────────── */
+  --sp-1:  0.25rem;   /* 4px  */
+  --sp-2:  0.5rem;    /* 8px  */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1rem;      /* 16px */
+  --sp-5:  1.25rem;   /* 20px */
+  --sp-6:  1.5rem;    /* 24px */
+  --sp-8:  2rem;      /* 32px */
+  --sp-10: 2.5rem;    /* 40px */
+  --sp-12: 3rem;      /* 48px */
+  --sp-16: 4rem;      /* 64px */
+  --sp-20: 5rem;      /* 80px */
+  --sp-24: 6rem;      /* 96px */
+
+  /* ── Radii ───────────────────────────────────────────── */
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-lg:   8px;
+  --r-xl:   12px;
+  --r-full: 9999px;
+
+  /* ── Shadows ─────────────────────────────────────────── */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.4);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.5);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,.6);
+  --shadow-xl:  0 16px 64px rgba(0,0,0,.7);
+  --shadow-gold: 0 0 20px rgba(201,168,76,.25);
+
+  /* ── Transitions ─────────────────────────────────────── */
+  --t-fast:   150ms ease;
+  --t-base:   250ms ease;
+  --t-slow:   400ms ease;
+  --t-spring: 350ms cubic-bezier(.34,1.56,.64,1);
+
+  /* ── Layout ──────────────────────────────────────────── */
+  --max-w:      1280px;
+  --nav-h:      64px;
+  --sidebar-w:  260px;
+  --z-base:     1;      /* local stacking within components           */
+  --z-raised:   10;     /* slightly raised layers (hero overlays)     */
+  --z-dropdown: 100;    /* dropdown menus                             */
+  --z-sticky:   200;    /* sticky header / footer                     */
+  --z-flyout:   300;    /* nav flyouts & search dropdown (above header) */
+  --z-modal:    1000;   /* modal backdrops + dialogs                  */
+  --z-toast:    2000;   /* toasts + floating pickers (theme menu)     */
+  --z-loader:   9999;   /* full-page loader overlay                   */
+  --z-progress: 10000;  /* progress bar (above loader)                */
+}
+
+/* Dark-only, no light mode switch for this brand */
+
+/* ============================================================
+   ZENMARKET — LIGHT THEME
+   ============================================================ */
+[data-theme="light"] {
+  --clr-bg:           #f4f5f9;
+  --clr-bg-2:         #eaecf4;
+  --clr-bg-3:         #e0e3ef;
+  --clr-surface:      #ffffff;
+  --clr-surface-2:    #f7f8fc;
+  --clr-border:       #d2d6e8;
+  --clr-border-2:     #bcc1d6;
+
+  --clr-gold:         #a67c24;
+  --clr-gold-light:   #c9a84c;
+  --clr-gold-dim:     #8a6418;
+  --clr-gold-bg:      rgba(166,124,36,.10);
+
+  --clr-text:         #111320;
+  --clr-text-2:       #3d4358;
+  --clr-text-3:       #6a7190;
+  --clr-text-inv:     #ffffff;
+
+  --clr-violet:       #7c3aed;
+  --clr-violet-light: #8b5cf6;
+  --clr-violet-bg:    rgba(124,58,237,.10);
+
+  --clr-overlay:      rgba(15,18,32,.72);
+
+  --shadow-sm:  0 1px 4px rgba(0,0,0,.08);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg:  0 8px 36px rgba(0,0,0,.13);
+  --shadow-xl:  0 16px 64px rgba(0,0,0,.15);
+  --shadow-gold: 0 0 24px rgba(166,124,36,.22);
+}
+
+/* ============================================================
+   ZENMARKET — WARM GOLD THEME
+   ============================================================ */
+[data-theme="warm"] {
+  --clr-bg:           #0f0c07;
+  --clr-bg-2:         #161009;
+  --clr-bg-3:         #1e1608;
+  --clr-surface:      #261d0b;
+  --clr-surface-2:    #2e2410;
+  --clr-border:       #3d3015;
+  --clr-border-2:     #4d3c1a;
+
+  --clr-gold:         #f0c050;
+  --clr-gold-light:   #f7d370;
+  --clr-gold-dim:     #b8922e;
+  --clr-gold-bg:      rgba(226,184,74,.12);
+
+  --clr-text:         #f5ead0;
+  --clr-text-2:       #c8b48a;
+  --clr-text-3:       #8a7250;
+  --clr-text-inv:     #0f0c07;
+
+  --clr-overlay:      rgba(10,8,4,.85);
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.5);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.6);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,.7);
+  --shadow-xl:  0 16px 64px rgba(0,0,0,.8);
+  --shadow-gold: 0 0 24px rgba(226,184,74,.30);
+}
+
+/* ── Smooth theme transition on semantic elements only (perf: skip img/canvas) ── */
+body, .navbar, .footer, .card, .modal, .admin-sidebar,
+.admin-topbar, .btn, .badge, .product-card, .cat-card,
+.announcement-bar, .promo-banner, .newsletter-block,
+input, select, textarea, .form-control,
+.kpi-card, .admin-chart-card, .admin-table-wrap,
+.sidebar-link, .nav-link, .toast, .theme-menu,
+.tab-btn, .tab-panel, .trust-badge, .hero-badge {
+  transition:
+    background-color 200ms ease,
+    border-color     200ms ease,
+    color            120ms ease,
+    box-shadow       200ms ease;
+}
+/* Preserve existing component transitions on hover/focus */
+.btn, .product-card, .cat-card, .nav-link, .sidebar-link {
+  transition:
+    background-color 200ms ease,
+    border-color     200ms ease,
+    color            120ms ease,
+    box-shadow       200ms ease,
+    transform        var(--t-base),
+    opacity          var(--t-base);
+}
+
+/* ── v30: Mobile / Viewport Tokens ──────────────────────── */
+:root {
+  /* Safe area helpers */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+
+  /* Bottom nav height (used in JS too) */
+  --mbn-height: calc(60px + var(--safe-bottom));
+
+  /* Touch target minimum */
+  --touch-min: 44px;
+
+  /* Sidebar width variable (used by admin-main margin) */
+  --sidebar-w: 240px;
+}
+
+/* ── v30: dvh / svh fallbacks ─────────────────────────────── */
+@supports (height: 100dvh) {
+  :root {
+    --vh-full: 100dvh;
+    --vh-small: 100svh;
+  }
+}
+@supports not (height: 100dvh) {
+  :root {
+    --vh-full: 100vh;
+    --vh-small: 100vh;
+  }
+}

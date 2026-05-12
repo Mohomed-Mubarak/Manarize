@@ -1,0 +1,285 @@
+/* ============================================================
+   ADMIN ORDERS — Mobile Responsive Styles
+   ============================================================ */
+
+/* Skip rendering off-screen order rows — reduces layout on large order tables */
+.admin-table-wrap .data-table tbody tr {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 52px; /* approximate row height */
+}
+
+/* ━━ TOOLBAR — stack filters on mobile ━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 900px) {
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+  .admin-toolbar-left,
+  .admin-toolbar-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-2);
+    width: 100%;
+  }
+  .admin-toolbar-left .search-bar {
+    grid-column: 1 / -1; /* full width */
+    width: 100% !important;
+  }
+  .admin-toolbar-left select,
+  .admin-toolbar-right select {
+    width: 100% !important;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-toolbar-left,
+  .admin-toolbar-right {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Search bar full width on mobile */
+@media (max-width: 640px) {
+  .admin-toolbar .search-bar { width: 100% !important; }
+  .admin-toolbar .search-bar input { min-height: 44px; }
+  .admin-toolbar .search-bar button { min-height: 44px; min-width: 44px; }
+}
+
+/* ━━ TABLE HEADER — count + bulk delete ━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .admin-table-header {
+    padding: var(--sp-3);
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+  #bulk-delete-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+}
+
+/* ━━ TABLE — compact on tablet ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 900px) {
+  .admin-table-wrap .table-responsive { overflow-x: auto; }
+  .admin-table-wrap .data-table { min-width: 500px; }
+}
+
+/* ━━ TABLE — CARD VIEW on mobile ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  /* Unwrap the table into a block list */
+  .admin-table-wrap .table-responsive { overflow-x: visible; }
+  .admin-table-wrap .data-table,
+  .admin-table-wrap .data-table tbody { display: block; width: 100%; }
+  .admin-table-wrap .data-table thead { display: none; }
+
+  /* Each row → card */
+  .admin-table-wrap .data-table tr {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    grid-template-rows: auto auto auto;
+    column-gap: var(--sp-3);
+    row-gap: var(--sp-2);
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
+    padding: var(--sp-4);
+    margin-bottom: var(--sp-3);
+    transition: border-color var(--t-fast);
+  }
+  .admin-table-wrap .data-table tr:hover { border-color: var(--clr-border-2); }
+  .admin-table-wrap .data-table tr[style*="rgba(201,168,76"] {
+    border-color: var(--clr-gold-dim);
+  }
+
+  /* Col 1: checkbox — spans rows 1-3 */
+  .admin-table-wrap .data-table td:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+    border: none;
+    padding-left: 0;
+    width: 24px;
+  }
+  .admin-table-wrap .data-table td:nth-child(1) input {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0;
+  }
+
+  /* Col 2: Order ID — row 1 */
+  .admin-table-wrap .data-table td:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 0;
+  }
+  .admin-table-wrap .data-table td:nth-child(2) a {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semi);
+    color: var(--clr-gold);
+    text-decoration: none;
+  }
+
+  /* Col 3: Customer — row 2 */
+  .admin-table-wrap .data-table td:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+  }
+  .admin-table-wrap .data-table td:nth-child(3) .cust-name {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--clr-text);
+  }
+  .admin-table-wrap .data-table td:nth-child(3) .cust-email {
+    font-size: var(--fs-xs);
+    color: var(--clr-text-3);
+  }
+
+  /* Col 4: Items (hide-mobile) — hidden */
+  .admin-table-wrap .data-table td:nth-child(4) { display: none !important; }
+
+  /* Col 5: Total — row 3 */
+  .admin-table-wrap .data-table td:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    border: none;
+    padding: 0;
+    font-family: var(--ff-mono);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semi);
+    color: var(--clr-text);
+  }
+
+  /* Col 6: Status — top-right of card, row 1 */
+  .admin-table-wrap .data-table td:nth-child(6) {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: none;
+    padding: 0;
+  }
+
+  /* Col 7: Payment (hide-mobile) — hidden */
+  .admin-table-wrap .data-table td:nth-child(7) { display: none !important; }
+
+  /* Col 8: Date (hide-mobile) — hidden */
+  .admin-table-wrap .data-table td:nth-child(8) { display: none !important; }
+
+  /* Col 9: Actions — bottom-right */
+  .admin-table-wrap .data-table td:nth-child(9) {
+    grid-column: 3;
+    grid-row: 2 / 4;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: var(--sp-1);
+    border: none;
+    padding: 0;
+  }
+  .admin-table-wrap .data-table td:nth-child(9) .btn {
+    min-height: 36px;
+    padding: var(--sp-1) var(--sp-3);
+    font-size: var(--fs-xs);
+    white-space: nowrap;
+  }
+  .admin-table-wrap .data-table td:nth-child(9) > div {
+    flex-direction: column;
+    gap: var(--sp-1);
+    align-items: flex-end;
+  }
+
+  /* "No orders found" empty state */
+  .admin-table-wrap .data-table tr:has(td[colspan]) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--clr-border);
+    min-height: 120px;
+    background: transparent;
+  }
+  .admin-table-wrap .data-table tr:has(td[colspan]) td {
+    grid-column: unset;
+    grid-row: unset;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    padding: var(--sp-4);
+    color: var(--clr-text-3);
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ━━ PAGINATION — centered on mobile ━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .admin-table-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-4) var(--sp-3);
+  }
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-1);
+  }
+  .page-btn {
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-md);
+    background: var(--clr-surface);
+    color: var(--clr-text-2);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    transition: all var(--t-fast);
+  }
+  .page-btn:hover { border-color: var(--clr-gold); color: var(--clr-gold); }
+  .page-btn.active {
+    background: var(--clr-gold);
+    color: var(--clr-text-inv);
+    border-color: var(--clr-gold);
+    font-weight: var(--fw-semi);
+  }
+  .page-btn:disabled { opacity: .4; cursor: not-allowed; }
+}
+
+/* ━━ BADGE SIZING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+}

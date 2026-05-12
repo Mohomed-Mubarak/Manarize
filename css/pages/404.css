@@ -1,0 +1,412 @@
+/* =============================================================================
+   404.CSS — 404 Not-Found Page Styles
+   -----------------------------------------------------------------------------
+   Purpose : Full-screen branded error page.  Uses CSS custom-properties (design tokens)
+   so it works standalone, without the main stylesheet.
+=============================================================================== */
+
+/* ── Design tokens (self-contained — no external CSS needed) ── */
+    
+/* ── Design Tokens ─── Self-contained colour/font variables for this isolated page */
+:root {
+      --clr-bg: #0d0f14;
+      --clr-bg-2: #12151c;
+      --clr-surface: #1e2330;
+      --clr-border: #2a3045;
+      --clr-gold: #c9a84c;
+      --clr-gold-light: #e2c06e;
+      --clr-gold-dim: #a07a30;
+      --clr-gold-bg: rgba(201, 168, 76, .10);
+      --clr-text: #e8eaf0;
+      --clr-text-2: #a0a8bc;
+      --clr-text-3: #667080;
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body: 'DM Sans', system-ui, sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+      --t-base: 250ms ease;
+    }
+
+    
+/* ── Light Theme Overrides ─────────────────────────────────────────────────── */
+[data-theme="light"] {
+      --clr-bg: #f5f6fa;
+      --clr-bg-2: #eceef5;
+      --clr-surface: #ffffff;
+      --clr-border: #d8dce8;
+      --clr-gold: #b8912a;
+      --clr-gold-light: #c9a84c;
+      --clr-gold-dim: #9a7820;
+      --clr-gold-bg: rgba(184, 145, 42, .10);
+      --clr-text: #1a1d26;
+      --clr-text-2: #454c60;
+      --clr-text-3: #7a8099;
+    }
+
+    
+/* ── Warm Theme Overrides ──────────────────────────────────────────────────── */
+[data-theme="warm"] {
+      --clr-bg: #0f0c07;
+      --clr-bg-2: #161009;
+      --clr-surface: #261d0b;
+      --clr-border: #3d3015;
+      --clr-gold: #e2b84a;
+      --clr-gold-light: #f5cc6a;
+      --clr-gold-dim: #b8922e;
+      --clr-gold-bg: rgba(226, 184, 74, .12);
+      --clr-text: #f5ead0;
+      --clr-text-2: #c8b48a;
+      --clr-text-3: #8a7250;
+    }
+
+    
+/* ── CSS Reset ──────────────────────────────────────────────────────────────── */
+*,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--ff-body);
+      overflow: hidden;
+    }
+
+    /* ── Particle layer ────────────────────────────────────── */
+    
+/* ── Particle Layer ─── Animated gold dots floating in the background ─────── */
+#particle-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--clr-gold);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .particle.glow {
+      width: 5px;
+      height: 5px;
+      background: var(--clr-gold-light);
+      box-shadow: 0 0 8px 2px var(--clr-gold-dim);
+    }
+
+    .particle.tiny {
+      width: 2px;
+      height: 2px;
+      background: var(--clr-gold-dim);
+    }
+
+    /* ── Ambient radial glow behind the 404 ───────────────── */
+    
+/* ── Ambient Glow ─── Radial gradient orb centred behind the 404 numeral ─── */
+.bg-orb {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(640px, 90vw);
+      height: min(640px, 90vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 168, 76, .055) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    [data-theme="warm"] .bg-orb {
+      background: radial-gradient(circle, rgba(226, 184, 74, .09) 0%, transparent 68%);
+    }
+
+    [data-theme="light"] .bg-orb {
+      background: radial-gradient(circle, rgba(184, 145, 42, .05) 0%, transparent 68%);
+    }
+
+    /* ── Layout ────────────────────────────────────────────── */
+    
+/* ── Page Layout ────────────────────────────────────────────────────────────── */
+.page {
+      position: relative;
+      z-index: var(--z-base);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* ── Brand ─────────────────────────────────────────────── */
+    
+/* ── Brand Mark ─── Fixed top-centre logo link ─────────────────────────────── */
+.brand {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--clr-gold);
+      letter-spacing: .08em;
+      text-decoration: none;
+      opacity: 0;
+      animation: riseIn .55s .1s ease both;
+      white-space: nowrap;
+    }
+
+    .brand:hover {
+      color: var(--clr-gold-light);
+    }
+
+    /* ── 404 numeral ───────────────────────────────────────── */
+    
+/* ── 404 Numeral ─── Giant gold gradient text ──────────────────────────────── */
+.error-code {
+      font-family: var(--ff-display);
+      font-size: clamp(6.5rem, 22vw, 13.5rem);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--clr-gold-light) 0%, var(--clr-gold) 45%, var(--clr-gold-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 32px rgba(201, 168, 76, .22));
+      opacity: 0;
+      animation: riseIn .7s .25s cubic-bezier(.34, 1.35, .64, 1) both;
+      user-select: none;
+    }
+
+    [data-theme="warm"] .error-code {
+      filter: drop-shadow(0 0 40px rgba(226, 184, 74, .30));
+    }
+
+    /* ── Gold rule ─────────────────────────────────────────── */
+    
+/* ── Gold Divider Rule ──────────────────────────────────────────────────────── */
+.rule {
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+      margin: 1.35rem auto;
+      opacity: 0;
+      animation: riseIn .45s .42s ease both;
+    }
+
+    /* ── Headline ──────────────────────────────────────────── */
+    
+/* ── Headline ───────────────────────────────────────────────────────────────── */
+.error-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.25rem, 3.5vw, 1.875rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--clr-text);
+      letter-spacing: .01em;
+      opacity: 0;
+      animation: riseIn .45s .52s ease both;
+    }
+
+    /* ── Body copy ─────────────────────────────────────────── */
+    
+/* ── Body Copy ──────────────────────────────────────────────────────────────── */
+.error-sub {
+      margin-top: .6rem;
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--clr-text-2);
+      max-width: 360px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: riseIn .45s .62s ease both;
+    }
+
+    /* ── Search bar ────────────────────────────────────────── */
+    
+/* ── Search Bar ─────────────────────────────────────────────────────────────── */
+.search-wrap {
+      position: relative;
+      margin-top: 2rem;
+      width: min(380px, 92vw);
+      opacity: 0;
+      animation: riseIn .45s .72s ease both;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: .72rem 1rem .72rem 2.8rem;
+      border-radius: 9999px;
+      border: 1px solid var(--clr-border);
+      background: var(--clr-surface);
+      color: var(--clr-text);
+      font-family: var(--ff-body);
+      font-size: .875rem;
+      outline: none;
+      transition: border-color var(--t-base), box-shadow var(--t-base), background var(--t-base);
+    }
+
+    .search-input::placeholder {
+      color: var(--clr-text-3);
+    }
+
+    .search-input:focus {
+      border-color: var(--clr-gold-dim);
+      box-shadow: 0 0 0 3px var(--clr-gold-bg);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--clr-text-3);
+      font-size: .75rem;
+      pointer-events: none;
+      transition: color var(--t-base);
+    }
+
+    .search-wrap:focus-within .search-icon {
+      color: var(--clr-gold);
+    }
+
+    /* ── CTAs ──────────────────────────────────────────────── */
+    
+/* ── CTA Buttons Group ──────────────────────────────────────────────────────── */
+.cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.75rem;
+      justify-content: center;
+      opacity: 0;
+      animation: riseIn .45s .84s ease both;
+    }
+
+    
+/* ── Button Base ────────────────────────────────────────────────────────────── */
+.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .68rem 1.5rem;
+      border-radius: 9999px;
+      font-family: var(--ff-body);
+      font-size: .875rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform var(--t-base), box-shadow var(--t-base), background var(--t-base), color var(--t-base), border-color var(--t-base);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--clr-gold);
+      color: #0d0f14;
+      box-shadow: 0 4px 18px rgba(201, 168, 76, .32);
+    }
+
+    .btn-primary:hover {
+      background: var(--clr-gold-light);
+      box-shadow: 0 6px 26px rgba(201, 168, 76, .48);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--clr-text-2);
+      border-color: var(--clr-border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--clr-gold-dim);
+      color: var(--clr-gold-light);
+    }
+
+    /* ── Status bar ────────────────────────────────────────── */
+    
+/* ── Bottom Status Bar ─── Monospaced "404 / PAGE NOT FOUND" label ─────────── */
+.status-bar {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-mono);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      color: var(--clr-text-3);
+      white-space: nowrap;
+      opacity: 0;
+      animation: riseIn .4s 1.05s ease both;
+    }
+
+    .status-bar em {
+      color: var(--clr-gold-dim);
+      font-style: normal;
+    }
+
+    /* ── Keyframes ─────────────────────────────────────────── */
+    
+/* ── Keyframe: Rise-In ─── Shared entrance animation (fade + slide up) ───── */
+@keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Reduced motion ────────────────────────────────────── */
+    
+/* ── Accessibility: Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        max-width: 260px;
+      }
+    }

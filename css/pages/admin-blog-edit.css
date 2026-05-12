@@ -1,0 +1,386 @@
+/* =============================================================================
+   ADMIN-BLOG-EDIT.CSS — Blog Post Editor (Admin) Styles
+   -----------------------------------------------------------------------------
+   Purpose : Rich-text editor with formatting toolbar, collapsible sidebar panels,
+   cover image preview, publish status indicator, tag input, and SEO score bar.
+=============================================================================== */
+
+/* ── Blog editor layout ── */
+    
+/* ── Editor Layout ─── Two-column: editor left, sidebar right ───────────────── */
+.blog-editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: var(--sp-6);
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .blog-editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Editor header ── */
+    
+/* ── Editor Header ─── Title bar with autosave indicator and action buttons ── */
+.editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sp-5);
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+    }
+
+    .editor-header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
+    .editor-header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+
+    
+/* ── Autosave Indicator ─── Fades in briefly when content is saved ───────── */
+#autosave-indicator {
+      font-size: .75rem;
+      color: var(--clr-text-3);
+      opacity: 0;
+      transition: opacity .4s ease;
+      margin-right: var(--sp-2);
+    }
+
+    
+/* ── Unsaved-Changes Dot ─── Orange dot shown when there are unsaved changes ─ */
+#dirty-dot {
+      display: none;
+      width: 8px;
+      height: 8px;
+      background: var(--clr-warning);
+      border-radius: 50%;
+      margin-right: var(--sp-2);
+    }
+
+    /* ── Rich editor ── */
+    
+/* ── Rich Editor Wrapper ────────────────────────────────────────────────────── */
+.rich-editor-wrap {
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--clr-surface);
+    }
+
+    
+/* ── Toolbar ─── Formatting buttons (Bold, Italic, Heading, etc.) ────────── */
+.rich-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: var(--sp-2) var(--sp-3);
+      background: var(--clr-bg-2);
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .rich-toolbar-group {
+      display: flex;
+      gap: 2px;
+      padding-right: var(--sp-2);
+      margin-right: var(--sp-1);
+      border-right: 1px solid var(--clr-border);
+    }
+
+    .rich-toolbar-group:last-child {
+      border-right: none;
+      padding-right: 0;
+      margin-right: 0;
+    }
+
+    .tb-btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      color: var(--clr-text-2);
+      font-size: .8125rem;
+      background: none;
+      border: none;
+      transition: all var(--t-fast);
+      flex-shrink: 0;
+    }
+
+    .tb-btn:hover {
+      background: var(--clr-border);
+      color: var(--clr-text);
+    }
+
+    .tb-btn.active {
+      background: var(--clr-gold-bg);
+      color: var(--clr-gold);
+    }
+
+    .tb-select {
+      height: 30px;
+      padding: 0 var(--sp-2);
+      background: none;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-sm);
+      color: var(--clr-text-2);
+      font-size: .75rem;
+      cursor: pointer;
+    }
+
+    
+/* ── Editor Content Area ─── Contenteditable div; styled like a document ───── */
+#rich-editor {
+      min-height: 420px;
+      padding: var(--sp-6);
+      outline: none;
+      color: var(--clr-text);
+      font-size: var(--fs-base);
+      line-height: 1.8;
+      caret-color: var(--clr-gold);
+    }
+
+    #rich-editor:empty::before {
+      content: 'Start writing your post here… Use the toolbar to format text, add headings, images, and more.';
+      color: var(--clr-text-3);
+      pointer-events: none;
+    }
+
+    
+/* ── Editor Typography ─── h1-h3, p, ul, blockquote, a, img, code, pre, hr ── */
+#rich-editor h1,
+    #rich-editor h2,
+    #rich-editor h3 {
+      font-family: var(--ff-display);
+      margin: 1.5rem 0 .75rem;
+      color: var(--clr-text);
+    }
+
+    #rich-editor h2 {
+      font-size: 1.5rem;
+    }
+
+    #rich-editor h3 {
+      font-size: 1.25rem;
+    }
+
+    #rich-editor p {
+      margin-bottom: 1rem;
+    }
+
+    #rich-editor ul,
+    #rich-editor ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #rich-editor li {
+      margin-bottom: .25rem;
+    }
+
+    #rich-editor blockquote {
+      border-left: 3px solid var(--clr-gold);
+      padding-left: var(--sp-4);
+      color: var(--clr-text-2);
+      font-style: italic;
+      margin: 1.25rem 0;
+    }
+
+    #rich-editor a {
+      color: var(--clr-gold);
+    }
+
+    #rich-editor img {
+      max-width: 100%;
+      border-radius: var(--r-md);
+      margin: .75rem 0;
+    }
+
+    #rich-editor code {
+      font-family: var(--ff-mono);
+      background: var(--clr-bg-2);
+      padding: 2px 6px;
+      border-radius: var(--r-sm);
+      font-size: .875em;
+    }
+
+    #rich-editor pre {
+      background: var(--clr-bg-2);
+      padding: var(--sp-4);
+      border-radius: var(--r-md);
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      font-family: var(--ff-mono);
+      font-size: .875em;
+    }
+
+    #rich-editor hr {
+      border: none;
+      border-top: 1px solid var(--clr-border);
+      margin: 2rem 0;
+    }
+
+    
+/* ── Editor Footer ─── Word count and character count bar ──────────────────── */
+.editor-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-3) var(--sp-5);
+      border-top: 1px solid var(--clr-border);
+      background: var(--clr-bg-2);
+      font-size: .75rem;
+      color: var(--clr-text-3);
+    }
+
+    /* ── Sidebar panels ── */
+    
+/* ── Sidebar Panels ─── Collapsible info cards (Status, Cover, Tags, SEO) ── */
+.sidebar-panel {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-bottom: var(--sp-4);
+    }
+
+    .sidebar-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-3) var(--sp-4);
+      border-bottom: 1px solid var(--clr-border);
+      background: var(--clr-bg-2);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sidebar-panel-header h4 {
+      font-size: .8125rem;
+      font-weight: var(--fw-semi);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--clr-text-2);
+    }
+
+    .sidebar-panel-header .chevron {
+      color: var(--clr-text-3);
+      transition: transform var(--t-fast);
+      font-size: .7rem;
+    }
+
+    .sidebar-panel-header.collapsed .chevron {
+      transform: rotate(-90deg);
+    }
+
+    .sidebar-panel-body {
+      padding: var(--sp-4);
+    }
+
+    .sidebar-panel-body.hidden {
+      display: none;
+    }
+
+    /* ── Cover image preview ── */
+    
+/* ── Cover Image Preview ─── 16:9 preview with dashed placeholder border ────── */
+#cover-preview-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--clr-bg-2);
+      border: 1px dashed var(--clr-border);
+      margin-bottom: var(--sp-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #cover-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    #cover-preview-empty {
+      text-align: center;
+      color: var(--clr-text-3);
+      font-size: .8125rem;
+    }
+
+    #cover-preview-empty i {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: .5rem;
+      opacity: .3;
+    }
+
+    /* ── Publish status indicator ── */
+    
+/* ── Publish Status Badge ─── Draft (grey) or Published (green) indicator ──── */
+.publish-status {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-4);
+      border-radius: var(--r-md);
+      font-size: .875rem;
+      margin-bottom: var(--sp-4);
+    }
+
+    .publish-status.draft {
+      background: var(--clr-bg-2);
+      color: var(--clr-text-2);
+    }
+
+    .publish-status.published {
+      background: var(--clr-success-bg);
+      color: var(--clr-success);
+    }
+
+    #status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── Tag input ── */
+    
+/* ── Tag Input Hint ─── Helper text below the tag input ─────────────────────── */
+.tag-hint {
+      font-size: .7rem;
+      color: var(--clr-text-3);
+      margin-top: .25rem;
+    }
+
+    /* ── SEO score bar ── */
+    
+/* ── SEO Score Bar ─── Progress bar showing SEO completeness score ─────────── */
+.seo-bar-wrap {
+      height: 4px;
+      background: var(--clr-border);
+      border-radius: var(--r-full);
+      margin-bottom: var(--sp-3);
+      overflow: hidden;
+    }
+
+    .seo-bar-fill {
+      height: 100%;
+      border-radius: var(--r-full);
+      background: var(--clr-success);
+      transition: width var(--t-base);
+    }

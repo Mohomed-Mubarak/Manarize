@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Login — Manarize</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/login.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/login-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <div class="auth-page">
+    <!-- Visual side -->
+    <div class="auth-visual">
+      <div style="position:relative;z-index:1">
+        <a href="index.html" style="display:block;margin-bottom:3rem">
+          <span style="font-family:var(--ff-display);font-size:1.5rem;color:var(--clr-text)">Zen<span style="color:var(--clr-gold)">Market</span></span>
+        </a>
+        <p class="auth-visual-quote">
+          "Discover the finest<br>
+          products Sri Lanka<br>
+          has to <em>offer.</em>"
+        </p>
+        <p>Premium quality. Authentic products. Delivered with care.</p>
+        <div style="margin-top:3rem;display:flex;gap:2rem">
+          <div>
+            <div style="font-family:var(--ff-mono);font-size:1.5rem;color:var(--clr-gold)">10K+</div>
+            <div style="font-size:.8125rem;color:var(--clr-text-3)">Happy Customers</div>
+          </div>
+          <div>
+            <div style="font-family:var(--ff-mono);font-size:1.5rem;color:var(--clr-gold)">500+</div>
+            <div style="font-size:.8125rem;color:var(--clr-text-3)">Products</div>
+          </div>
+          <div>
+            <div style="font-family:var(--ff-mono);font-size:1.5rem;color:var(--clr-gold)">25+</div>
+            <div style="font-size:.8125rem;color:var(--clr-text-3)">Districts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form side -->
+    <div style="display:flex;align-items:center;justify-content:center;padding:3rem 2rem;overflow-y:auto">
+      <div id="auth-form-panel" style="width:100%;max-width:420px">
+        <a href="index.html" class="auth-logo">Manarize</a>
+
+        <a href="index.html" class="btn btn-ghost btn-sm" style="margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.4rem;color:var(--clr-text-3);padding-left:0">
+          <i class="fa-solid fa-arrow-left" style="font-size:.75rem"></i> Back to Home
+        </a>
+
+        <!-- Tabs -->
+        <div class="tabs" style="margin-bottom:2rem">
+          <button class="tab-btn active" id="tab-login-btn">Sign In</button>
+          <button class="tab-btn" id="tab-register-btn">Create Account</button>
+        </div>
+
+        <!-- ── SIGN IN FORM ─────────────────────────────── -->
+        <div id="form-login">
+          <div class="auth-title">Welcome back</div>
+          <div class="auth-subtitle">Enter your credentials — we'll email you a one-click sign-in link</div>
+
+          <div id="pli-err-1" class="auth-alert" style="display:none">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span id="pli-err-1-msg"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Email Address</label>
+            <div class="input-group">
+              <i class="input-icon fa-solid fa-envelope"></i>
+              <input class="form-control" type="email" id="pli-email"
+                required autocomplete="email" placeholder="you@example.com">
+            </div>
+          </div>
+
+          <div class="form-group" id="pli-password-group" style="display:block">
+            <label class="form-label required">Password</label>
+            <div class="input-group">
+              <i class="input-icon fa-solid fa-lock"></i>
+              <input class="form-control" type="password" id="pli-password"
+                required autocomplete="current-password" placeholder="Your password">
+              <button type="button" class="input-action" data-toggle-pw="pli-password" aria-label="Show / hide password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="hcap-login" style="margin-bottom:1rem"></div>
+
+          <button class="btn btn-primary btn-block btn-lg" id="pli-btn" style="margin-top:.25rem">
+            <i class="fa-solid fa-paper-plane"></i> Send Sign-In Link
+          </button>
+
+          <div class="auth-divider"><span>or</span></div>
+
+          <button type="button" class="btn-google btn-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+            Continue with Google
+          </button>
+
+          <div class="auth-footer">
+            No account yet?
+            <a href="#" id="prod-go-register" style="color:var(--clr-gold);font-weight:600">Create one</a>
+          </div>
+        </div>
+
+        <!-- ── CREATE ACCOUNT FORM ──────────────────────── -->
+        <div id="form-register" style="display:none">
+
+          <!-- Step 1: details -->
+          <div id="preg-step-1">
+            <div class="auth-title">Create Account</div>
+            <div class="auth-subtitle">Join thousands of happy customers</div>
+
+            <div id="preg-err-1" class="auth-alert" style="display:none">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span id="preg-err-1-msg"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Full Name</label>
+              <div class="input-group">
+                <i class="input-icon fa-regular fa-circle-user"></i>
+                <input class="form-control" type="text" id="preg-name"
+                  required autocomplete="name" placeholder="Your full name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Email Address</label>
+              <div class="input-group">
+                <i class="input-icon fa-solid fa-envelope"></i>
+                <input class="form-control" type="email" id="preg-email"
+                  required autocomplete="email" placeholder="you@example.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">
+                Phone Number
+              </label>
+              <div class="input-group">
+                <i class="input-icon fa-solid fa-phone"></i>
+                <input class="form-control" type="tel" id="preg-phone"
+                  placeholder="+94 XX XXX XXXX" autocomplete="tel" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Password</label>
+              <div class="input-group">
+                <i class="input-icon fa-solid fa-lock"></i>
+                <input class="form-control" type="password" id="preg-password"
+                  required minlength="8" autocomplete="new-password" placeholder="Min. 8 characters">
+                <button type="button" class="input-action" data-toggle-pw="preg-password" aria-label="Show / hide password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <div class="form-hint" id="preg-pw-strength"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Confirm Password</label>
+              <div class="input-group">
+                <i class="input-icon fa-solid fa-lock"></i>
+                <input class="form-control" type="password" id="preg-confirm"
+                  required autocomplete="new-password" placeholder="Repeat your password">
+                <button type="button" class="input-action" data-toggle-pw="preg-confirm" aria-label="Show / hide password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div id="hcap-register" style="margin-bottom:1rem"></div>
+
+            <button class="btn btn-primary btn-block btn-lg" id="preg-btn" style="margin-top:.25rem">
+              <i class="fa-solid fa-user-plus"></i> Create Account
+            </button>
+
+            <div class="auth-divider"><span>or</span></div>
+
+            <button type="button" class="btn-google btn-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              Continue with Google
+            </button>
+
+            <div class="auth-footer">
+              Already have an account?
+              <a href="#" id="prod-go-login" style="color:var(--clr-gold);font-weight:600">Sign in</a>
+            </div>
+          </div>
+
+          <!-- Step 2: confirmation link sent -->
+          <div id="preg-step-2" style="display:none">
+
+            <div class="mls-icon-wrap" style="margin-bottom:1.5rem">
+              <div class="mls-icon-ring mls-ring-1"></div>
+              <div class="mls-icon-ring mls-ring-2"></div>
+              <div class="mls-icon-core">
+                <i class="fa-solid fa-envelope-open-text"></i>
+              </div>
+            </div>
+
+            <h2 class="mls-title">Verify your email</h2>
+            <p class="mls-sub">We sent a confirmation link to</p>
+            <div class="mls-email" id="preg-sent-to"></div>
+
+            <div class="mls-steps">
+              <div class="mls-step">
+                <div class="mls-step-num">1</div>
+                <div class="mls-step-text">Open the email from <strong>Manarize</strong></div>
+              </div>
+              <div class="mls-step">
+                <div class="mls-step-num">2</div>
+                <div class="mls-step-text">Click <strong>Confirm your email</strong></div>
+              </div>
+              <div class="mls-step">
+                <div class="mls-step-num">3</div>
+                <div class="mls-step-text">Your account is activated &amp; you're signed in</div>
+              </div>
+            </div>
+
+            <p class="mls-spam-note">
+              <i class="fa-solid fa-triangle-exclamation" style="color:var(--clr-gold);font-size:.75rem"></i>
+              Check your <strong>spam or junk folder</strong> if you don't see it.
+              The link expires in <strong>60 minutes</strong>.
+            </p>
+
+            <div class="mls-resend-wrap" style="margin-bottom:.5rem">
+              <span class="mls-resend-label">Didn't receive it?</span>
+              <button id="preg-resend-btn" class="mls-resend-btn" disabled>
+                Resend link
+                <span id="preg-countdown" class="mls-countdown">(60s)</span>
+              </button>
+            </div>
+
+            <div class="mls-footer">
+              <button id="preg-back-btn" class="mls-back-link">
+                <i class="fa-solid fa-arrow-left" style="font-size:.7rem"></i> Back to registration
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="module" src="/dist/js/login-page.js?v=561e7c7d"></script>
+</body>
+</html>

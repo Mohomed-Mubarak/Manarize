@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Categories — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-categories.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/admin/admin-categories.js?v=561e7c7d">
+
+</head>
+
+<body>
+  <div id="page-loader">
+    <div class="loader-logo">Manarize</div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:1.5rem;align-items:start">
+
+    <!-- Table -->
+    <div class="admin-table-wrap">
+      <div class="admin-table-header">
+        <h3 style="font-size:.9375rem;font-weight:600">Categories &amp; Subcategories</h3>
+        <span id="cat-count" style="font-size:.8125rem;color:var(--clr-text-3)"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:32px"></th>
+              <th style="width:40px">Icon</th>
+              <th>Category</th>
+              <th>Subcategories</th>
+              <th>Products</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cats-tbody">
+            <tr>
+              <td colspan="7" style="text-align:center;padding:2rem;color:var(--clr-text-3)">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading…
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add / Edit forms -->
+    <div>
+      <!-- Add Category -->
+      <div class="card" style="margin-bottom:1.25rem">
+        <h4
+          style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+          <i class="fa-solid fa-folder-plus" style="color:var(--clr-gold)"></i> Add Category
+        </h4>
+        <div class="form-group">
+          <label class="form-label required">Category Name</label>
+          <input class="form-control" type="text" id="new-cat-name" placeholder="e.g. Electronics">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Font Awesome Icon</label>
+          <input class="form-control" type="text" id="new-cat-icon" placeholder="fa-solid fa-microchip">
+          <div class="form-hint">
+            Preview: <i id="icon-preview" class="fa-solid fa-tag" style="color:var(--clr-gold);margin-left:.25rem"></i>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" id="add-cat-btn">
+          <i class="fa-solid fa-plus"></i> Add Category
+        </button>
+      </div>
+
+      <!-- Add Subcategory -->
+      <div class="card">
+        <h4
+          style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+          <i class="fa-solid fa-sitemap" style="color:var(--clr-gold)"></i> Add Subcategory
+        </h4>
+        <div class="form-group">
+          <label class="form-label required">Parent Category</label>
+          <select class="form-control" id="sub-parent-cat">
+            <option value="">Select parent category…</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Subcategory Name</label>
+          <input class="form-control" type="text" id="new-sub-name" placeholder="e.g. Running Shoes">
+        </div>
+        <button type="button" class="btn btn-outline btn-block" id="add-sub-btn">
+          <i class="fa-solid fa-plus"></i> Add Subcategory
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+<script type="module" src="/dist/js/admin/admin-categories.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+
+</html>

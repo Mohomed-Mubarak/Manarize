@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>My Account — Manarize</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/profile.css?v=561e7c7d" media="print" data-defer="true">
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/profile-page.js?v=561e7c7d">
+
+</head>
+<body>
+  
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader">
+    <div class="loader-logo">Manarize</div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <div class="profile-hero">
+      <div class="container profile-hero__inner">
+        <h1 class="profile-hero__title">My Account</h1>
+        <p class="profile-hero__sub">Manage your orders, preferences and profile</p>
+      </div>
+    </div>
+
+    <div class="container profile-container">
+      <div class="profile-layout">
+
+        <!-- ── Sidebar ── -->
+        <aside class="profile-sidebar-wrap">
+          <div class="profile-sidebar">
+            <!-- Avatar & user info -->
+            <div class="profile-sidebar__top">
+              <div class="profile-avatar" id="profile-avatar">
+                <i class="fa-regular fa-circle-user"></i>
+              </div>
+              <div class="profile-sidebar__name" id="profile-name">—</div>
+              <div class="profile-sidebar__email" id="profile-email">—</div>
+            </div>
+
+            <!-- Nav -->
+            <nav class="profile-nav" aria-label="Account sections">
+              <a class="profile-nav-link active" data-panel="orders" href="#">
+                <span class="profile-nav-link__icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                <span>My Orders</span>
+              </a>
+              <a class="profile-nav-link" data-panel="wishlist" href="#">
+                <span class="profile-nav-link__icon"><i class="fa-regular fa-heart"></i></span>
+                <span>Wishlist</span>
+              </a>
+              <a class="profile-nav-link" data-panel="reviews" href="#">
+                <span class="profile-nav-link__icon"><i class="fa-regular fa-star"></i></span>
+                <span>My Reviews</span>
+                <span id="my-reviews-count" class="nav-count"></span>
+              </a>
+              <a class="profile-nav-link" data-panel="notifications" href="#" id="notif-nav-link">
+                <span class="profile-nav-link__icon"><i class="fa-regular fa-bell"></i></span>
+                <span>Notifications</span>
+                <span id="profile-notif-badge" class="nav-count nav-count--alert" style="display:none"></span>
+              </a>
+              <a class="profile-nav-link" data-panel="settings" href="#">
+                <span class="profile-nav-link__icon"><i class="fa-solid fa-gear"></i></span>
+                <span>Account Settings</span>
+              </a>
+              <a class="profile-nav-link" data-panel="addresses" href="#">
+                <span class="profile-nav-link__icon"><i class="fa-solid fa-location-dot"></i></span>
+                <span>Addresses</span>
+              </a>
+              <div class="profile-nav__divider"></div>
+              <a class="profile-nav-link profile-nav-link--danger" href="#" id="logout-btn">
+                <span class="profile-nav-link__icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                <span>Sign Out</span>
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- ── Panels ── -->
+        <div class="profile-panels">
+
+          <!-- Orders -->
+          <div id="panel-orders" class="profile-panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">My Orders</h2>
+                <p class="panel-sub">Track and manage your purchases</p>
+              </div>
+            </div>
+            <div id="orders-list">
+              <div class="pnl-empty">
+                <div class="pnl-empty__icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                <h3>No orders yet</h3>
+                <p>You haven't placed any orders yet.</p>
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wishlist -->
+          <div id="panel-wishlist" class="profile-panel" style="display:none">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">My Wishlist</h2>
+                <p class="panel-sub">Items you've saved for later</p>
+              </div>
+            </div>
+            <div id="wishlist-grid" class="products-grid"></div>
+          </div>
+
+          <!-- Reviews -->
+          <div id="panel-reviews" class="profile-panel" style="display:none">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">My Reviews</h2>
+                <p class="panel-sub">Share your experience with products you've purchased</p>
+              </div>
+            </div>
+            <div class="panel-info-banner">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>All reviews are moderated before appearing publicly on the product page. You'll see the status of each review below.</span>
+            </div>
+            <div id="my-reviews-list">
+              <div class="pnl-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</div>
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div id="panel-settings" class="profile-panel" style="display:none">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Account Settings</h2>
+                <p class="panel-sub">Update your personal information</p>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="settings-card__header">
+                <i class="fa-regular fa-user"></i> Profile Information
+              </div>
+              <form id="profile-form" class="settings-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input class="form-control" type="text" id="settings-name" placeholder="Your name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input class="form-control" type="tel" id="settings-phone" placeholder="+94 7X XXX XXXX">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input class="form-control" type="email" id="settings-email" disabled>
+                  <div class="form-hint"><i class="fa-solid fa-lock" style="font-size:.65rem"></i> Email cannot be changed</div>
+                </div>
+                <div class="settings-form__footer">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="settings-card" style="margin-top:1.5rem">
+              <div class="settings-card__header">
+                <i class="fa-solid fa-lock"></i> Change Password
+              </div>
+              <form id="password-form" class="settings-form">
+                <div class="form-group">
+                  <label class="form-label">Current Password</label>
+                  <div class="pw-input-wrap">
+                    <input class="form-control" type="password" id="current-pass" placeholder="Enter your current password">
+                    <button type="button" class="pw-toggle" data-target="current-pass" tabindex="-1" title="Show/hide password">
+                      <i class="fa-regular fa-eye"></i>
+                    </button>
+                  </div>
+                  <small class="form-hint"><i class="fa-solid fa-lock" style="font-size:.7rem"></i> Enter your current password to confirm changes</small>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <div class="pw-input-wrap">
+                      <input class="form-control" type="password" id="new-pass" placeholder="Min. 6 characters">
+                      <button type="button" class="pw-toggle" data-target="new-pass" tabindex="-1" title="Show/hide password">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="pw-input-wrap">
+                      <input class="form-control" type="password" id="confirm-pass" placeholder="Repeat new password">
+                      <button type="button" class="pw-toggle" data-target="confirm-pass" tabindex="-1" title="Show/hide password">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="settings-form__footer">
+                  <button type="submit" class="btn btn-outline">
+                    <i class="fa-solid fa-key"></i> Update Password
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div id="panel-notifications" class="profile-panel" style="display:none">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Notifications</h2>
+                <p class="panel-sub">System alerts and contact messages</p>
+              </div>
+              <button class="btn btn-ghost btn-sm" id="mark-all-read-btn">
+                <i class="fa-solid fa-check-double"></i> Mark All Read
+              </button>
+            </div>
+            <div id="notifications-list">
+              <div class="pnl-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</div>
+            </div>
+          </div>
+
+          <!-- Addresses -->
+          <div id="panel-addresses" class="profile-panel" style="display:none">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">My Addresses</h2>
+                <p class="panel-sub">Saved delivery addresses for faster checkout</p>
+              </div>
+              <button class="btn btn-primary btn-sm" id="add-address-btn">
+                <i class="fa-solid fa-plus"></i> Add Address
+              </button>
+            </div>
+            <div id="addresses-list">
+              <div class="pnl-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading…</div>
+            </div>
+          </div>
+
+        </div><!-- /profile-panels -->
+      </div><!-- /profile-layout -->
+    </div><!-- /container -->
+  </main>
+
+  <script type="module" src="/dist/js/profile-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

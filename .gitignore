@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+.env.production
+.vercel
+dist/
+.DS_Store
+*.log
+js/env.js
+js/env.production.js

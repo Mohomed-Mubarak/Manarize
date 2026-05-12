@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>My Wishlist — Manarize</title>
+  <meta name="description" content="Your saved products on Manarize. Review and shop your wishlist anytime.">
+  <link rel="canonical" href="https://manarize.lk/wishlist.html">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/wishlist.css?v=561e7c7d" media="print" data-defer="true">
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/wishlist-page.js?v=561e7c7d">
+
+</head>
+
+<body class="has-bottom-nav">
+  
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <section class="section-sm">
+      <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="breadcrumb-current">Wishlist</span>
+        </nav>
+
+        <!-- Page header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+          <div>
+            <h1 style="font-size:var(--fs-3xl);margin-bottom:.25rem">
+              My Wishlist
+              <span id="wishlist-count-badge" style="display:none;font-size:var(--fs-base);background:var(--clr-gold-bg);color:var(--clr-gold);border:1px solid var(--clr-gold);border-radius:var(--r-full);padding:.2rem .75rem;margin-left:.75rem;font-family:var(--ff-body);font-weight:var(--fw-semi)"></span>
+            </h1>
+            <p style="color:var(--clr-text-3);font-size:var(--fs-sm)">Products you've saved for later</p>
+          </div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+            <button id="share-wishlist-btn" class="btn btn-ghost btn-sm" style="display:none">
+              <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+            <button id="clear-wishlist-btn" class="btn btn-ghost btn-sm" style="display:none">
+              <i class="fa-regular fa-trash-can"></i> Clear All
+            </button>
+            <a href="shop.html" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-store"></i> Continue Shopping
+            </a>
+          </div>
+        </div>
+
+        <!-- Sort bar (shown when items exist, visibility controlled by JS) -->
+        <div id="wishlist-toolbar" style="display:none;margin-bottom:1.5rem;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <span style="font-size:var(--fs-sm);color:var(--clr-text-3)">Sort by:</span>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="wishlist-sort-chips">
+            <button class="chip active" data-sort="date-desc"><i class="fa-solid fa-clock"></i> Recently Added</button>
+            <button class="chip" data-sort="price-asc"><i class="fa-solid fa-arrow-up"></i> Price: Low–High</button>
+            <button class="chip" data-sort="price-desc"><i class="fa-solid fa-arrow-down"></i> Price: High–Low</button>
+            <button class="chip" data-sort="name-asc"><i class="fa-solid fa-a"></i> Name A–Z</button>
+          </div>
+        </div>
+
+        <!-- Wishlist grid -->
+        <div id="wishlist-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem"></div>
+
+        <!-- Empty state -->
+        <div id="wishlist-empty" class="empty-state" style="display:none">
+          <i class="fa-regular fa-heart"></i>
+          <h3>Your wishlist is empty</h3>
+          <p>Save products you love and find them here whenever you want.</p>
+          <a href="shop.html" class="btn btn-primary">
+            <i class="fa-solid fa-store"></i> Explore Shop
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+<script type="module" src="/dist/js/wishlist-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

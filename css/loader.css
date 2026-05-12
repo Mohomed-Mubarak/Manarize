@@ -1,0 +1,64 @@
+/* =============================================================================
+   LOADER.CSS — Page Loader & Progress Bar  (shared across all pages)
+   -----------------------------------------------------------------------------
+   Purpose : Prevents a blank/flash screen while external CSS and JS load.
+             Shows a centred branded spinner and a thin gold progress bar
+             at the top of the page.  Both fade out once the page is ready
+             (controlled by js/loader.js which adds the `.hidden` class).
+
+   Sections:
+     1. Page Loader  — full-screen overlay, theme-aware background
+     2. Loader Logo  — "ZenMarket" wordmark inside the overlay
+     3. Loader Dots  — three animated bouncing dots (loading indicator)
+     4. Page Progress Bar — 2 px gold bar that sweeps across the top
+============================================================================= */
+
+/* ── 1. Page Loader overlay ─────────────────────────────────────────────────
+   Covers the entire viewport (inset:0).  Fades to invisible after 3 s via
+   _ldrTimeout so the page is never permanently blocked if JS is slow.       */
+#page-loader {
+  position: fixed; inset: 0;
+  background: #0d0f14;          /* dark-mode default */
+  z-index: var(--z-loader);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1.5rem;
+  transition: opacity .3s, visibility .3s;
+  animation: _ldrTimeout 0s 3s forwards; /* auto-dismiss after 3 s */
+}
+[data-theme="light"] #page-loader { background: #f4f5f9; }
+[data-theme="warm"]  #page-loader { background: #0f0c07; }
+@keyframes _ldrTimeout { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+#page-loader.hidden     { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* ── 2. Loader Logo ──────────────────────────────────────────────────────── */
+.loader-logo {
+  font-family: Georgia, serif;
+  font-size: 1.75rem;
+  color: #c9a84c;               /* gold brand colour */
+  letter-spacing: .05em;
+}
+
+/* ── 3. Loader Dots (bouncing animation) ─────────────────────────────────── */
+.loader-dots { display: flex; gap: .5rem; }
+.loader-dots span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #a07a30;
+  animation: _ldrDot 1.2s ease infinite;
+}
+.loader-dots span:nth-child(2) { animation-delay: .2s; }
+.loader-dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes _ldrDot { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+
+/* ── 4. Page Progress Bar ───────────────────────────────────────────────────
+   A 2 px gold bar pinned to the very top.  js/loader.js advances it
+   (.active → .done) to give visual feedback during async data loading.      */
+#page-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; background: #c9a84c;
+  z-index: var(--z-progress); width: 0;
+  transition: width .3s ease;
+}
+#page-progress.active { animation: _ldrProgress 1.5s ease-out forwards; }
+@keyframes _ldrProgress { 0% { width: 0; } 70% { width: 85%; } 100% { width: 95%; } }
+#page-progress.done    { width: 100% !important; }

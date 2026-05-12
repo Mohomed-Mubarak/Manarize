@@ -1,0 +1,381 @@
+/* =============================================================================
+   ADMIN-REVIEWS.CSS — Admin Reviews & Homepage Panel Styles
+   -----------------------------------------------------------------------------
+   Purpose : Collapsible configuration panels for the reviews homepage widget:
+   toggle rows, featured-review picker, and live/off status badge.
+=============================================================================== */
+
+
+/* ── Homepage Panel ─── Collapsible settings card ────────────────────────────── */
+.hp-panel { background:var(--clr-surface); border:1px solid var(--clr-border); border-radius:var(--r-lg); margin:1.5rem 1.5rem 0; overflow:hidden; }
+    
+/* ── Panel Header ─── Click to expand / collapse ────────────────────────────── */
+.hp-panel__hdr { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--clr-border); cursor:pointer; user-select:none; gap:1rem; }
+    .hp-panel__hdr:hover { background:var(--clr-bg-2); }
+    .hp-panel__hdr h4 { font-size:.9375rem; font-weight:600; color:var(--clr-text); display:flex; align-items:center; gap:.5rem; margin:0; }
+    .hp-panel__hdr h4 i { color:var(--clr-gold); }
+    .hp-chevron { color:var(--clr-text-3); transition:transform .2s ease; }
+    .hp-chevron.open { transform:rotate(180deg); }
+    
+/* ── Panel Body ─── Expandable content (display:none → display:flex) ────────── */
+.hp-panel__body { padding:1.25rem; display:none; flex-direction:column; gap:1.25rem; }
+    .hp-panel__body.open { display:flex; }
+    
+/* ── Config Row ─── Two-column grid for form field pairs ────────────────────── */
+.cfg-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:640px){.cfg-row{grid-template-columns:1fr;}}
+    .cfg-field { display:flex; flex-direction:column; gap:.375rem; }
+    .cfg-field label { font-size:.8rem; font-weight:600; color:var(--clr-text-2); text-transform:uppercase; letter-spacing:.05em; }
+    
+/* ── Toggle Row ─── Checkbox setting with label + description ──────────────── */
+.toggle-row { display:flex; align-items:flex-start; gap:.75rem; padding:.75rem 1rem; background:var(--clr-bg-2); border-radius:var(--r-md); border:1px solid var(--clr-border); }
+    .toggle-row label { font-size:.875rem; font-weight:500; color:var(--clr-text); flex:1; cursor:pointer; }
+    .toggle-row .toggle-desc { font-size:.75rem; color:var(--clr-text-3); margin-top:2px; }
+    
+/* ── Featured Review Picker List ────────────────────────────────────────────── */
+.featured-list { display:flex; flex-direction:column; gap:.5rem; max-height:240px; overflow-y:auto; padding:.25rem; }
+    
+/* ── Selectable Review Item ─── Checkable review entry ─────────────────────── */
+.feat-item { display:flex; align-items:flex-start; gap:.625rem; padding:.625rem .75rem; border-radius:var(--r-md); border:1px solid var(--clr-border); cursor:pointer; transition:border-color .15s,background .15s; }
+    .feat-item:hover { border-color:var(--clr-gold-dim); background:var(--clr-bg-2); }
+    .feat-item.selected { border-color:var(--clr-gold); background:rgba(201,168,76,.06); }
+    .feat-item input[type="checkbox"] { margin-top:2px; accent-color:var(--clr-gold); }
+    .feat-item__info { flex:1; min-width:0; }
+    .feat-item__name { font-size:.8125rem; font-weight:600; color:var(--clr-text); }
+    .feat-item__prod { font-size:.75rem; color:var(--clr-text-3); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .feat-item__stars { font-size:.7rem; color:var(--clr-warning); white-space:nowrap; }
+    
+/* ── Panel Save Actions ─── Save button + success status text ───────────────── */
+.panel-actions { display:flex; align-items:center; gap:.75rem; padding-top:.25rem; border-top:1px solid var(--clr-border); flex-wrap:wrap; }
+    .save-status { font-size:.8125rem; color:var(--clr-success); opacity:0; transition:opacity .3s; }
+    .save-status.visible { opacity:1; }
+    
+/* ── Live / Off Badge ─── Green "LIVE" or grey "OFF" pill ──────────────────── */
+.live-badge { display:inline-flex; align-items:center; gap:.3rem; font-size:.7rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; padding:.2rem .5rem; border-radius:20px; background:rgba(34,197,94,.12); color:var(--clr-success); border:1px solid rgba(34,197,94,.25); }
+    .live-badge.off { background:rgba(148,163,184,.1); color:var(--clr-text-3); border-color:var(--clr-border); }
+
+
+/* ============================================================
+   ADMIN REVIEWS — v30 Mobile Responsive Additions
+   ============================================================ */
+
+/* ━━ HP PANEL — responsive ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.hp-panel { margin: var(--sp-4) 0 0; }
+
+@media (max-width: 768px) {
+  .hp-panel { margin: var(--sp-4) 0 0; border-radius: var(--r-md); }
+  .hp-panel__hdr { padding: var(--sp-3) var(--sp-4); }
+  .hp-panel__hdr h4 { font-size: var(--fs-sm); }
+  .hp-panel__body { padding: var(--sp-4); gap: var(--sp-4); }
+  .cfg-row { grid-template-columns: 1fr; }
+  .panel-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-2);
+  }
+  .panel-actions .btn { width: 100%; justify-content: center; min-height: 44px; }
+  .panel-actions .save-status { text-align: center; }
+  .toggle-row { flex-direction: column; gap: var(--sp-3); }
+  .toggle-row label { cursor: default; }
+  .featured-list { max-height: 200px; }
+  .feat-item { padding: var(--sp-2) var(--sp-3); }
+}
+
+@media (max-width: 480px) {
+  .hp-panel__hdr h4 { font-size: var(--fs-xs); gap: var(--sp-2); }
+  .hp-panel__body { padding: var(--sp-3); }
+  .live-badge { font-size: 9px; padding: 1px 6px; }
+}
+
+/* ━━ TOOLBAR — stack on mobile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 768px) {
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4) !important;
+  }
+  .admin-toolbar-left {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--sp-2);
+  }
+  .admin-toolbar-left .search-bar {
+    grid-column: 1 / -1;
+    width: 100% !important;
+  }
+  .admin-toolbar-left select { min-height: 44px; }
+  .admin-toolbar > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-toolbar-left { grid-template-columns: 1fr; }
+  .admin-toolbar .search-bar input { min-height: 44px; }
+  .admin-toolbar .search-bar button { min-height: 44px; min-width: 44px; }
+}
+
+/* ━━ BULK ACTION BAR — stack on mobile ━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  #bulk-bar {
+    margin: var(--sp-3) 0 0 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--sp-2) !important;
+  }
+  #bulk-bar #bulk-count { font-size: var(--fs-sm); }
+  #bulk-bar .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+  #bulk-clear {
+    border-top: 1px solid var(--clr-border);
+    padding-top: var(--sp-2);
+    margin-left: 0 !important;
+  }
+}
+
+/* ━━ TABLE WRAPPER — remove outer margin on mobile ━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .admin-table-wrap { margin-top: var(--sp-3) !important; }
+}
+
+/* ━━ REVIEWS TABLE — CARD VIEW on mobile ━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .admin-table-wrap .table-responsive { overflow-x: visible; }
+  .admin-table-wrap .data-table,
+  .admin-table-wrap .data-table tbody { display: block; width: 100%; }
+  .admin-table-wrap .data-table thead { display: none; }
+
+  /* Each row → card */
+  .admin-table-wrap .data-table tr {
+    display: block;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
+    padding: var(--sp-4);
+    margin-bottom: var(--sp-3);
+    position: relative;
+    cursor: pointer;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  }
+  .admin-table-wrap .data-table tr:hover {
+    border-color: var(--clr-border-2);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Checkbox — top-left absolute */
+  .admin-table-wrap .data-table td:nth-child(1) {
+    display: block;
+    position: absolute;
+    top: var(--sp-4);
+    left: var(--sp-4);
+    border: none;
+    padding: 0;
+    width: 20px;
+  }
+  .admin-table-wrap .data-table td:nth-child(1) input {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Customer name — main title */
+  .admin-table-wrap .data-table td:nth-child(2) {
+    display: block;
+    border: none;
+    padding: 0 0 var(--sp-2) 0;
+    padding-left: 28px; /* offset for checkbox */
+    margin-bottom: var(--sp-2);
+    border-bottom: 1px solid var(--clr-border);
+  }
+  .admin-table-wrap .data-table td:nth-child(2) > div:first-child {
+    font-size: var(--fs-base) !important;
+    font-weight: var(--fw-semi) !important;
+  }
+
+  /* Product — label row */
+  .admin-table-wrap .data-table td:nth-child(3) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    padding: var(--sp-1) 0;
+    font-size: var(--fs-sm) !important;
+    max-width: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+  .admin-table-wrap .data-table td:nth-child(3)::before {
+    content: 'Product';
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semi);
+    color: var(--clr-text-3);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    margin-right: var(--sp-3);
+    min-width: 60px;
+  }
+
+  /* Rating — label row */
+  .admin-table-wrap .data-table td:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    padding: var(--sp-1) 0;
+  }
+  .admin-table-wrap .data-table td:nth-child(4)::before {
+    content: 'Rating';
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semi);
+    color: var(--clr-text-3);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    margin-right: var(--sp-3);
+    min-width: 60px;
+  }
+
+  /* Review text — collapsed preview */
+  .admin-table-wrap .data-table td:nth-child(5) {
+    display: block;
+    border: none;
+    padding: var(--sp-2) 0;
+    font-size: var(--fs-sm) !important;
+    color: var(--clr-text-2) !important;
+    max-width: none !important;
+    border-top: 1px solid var(--clr-border);
+    margin-top: var(--sp-1);
+  }
+  .admin-table-wrap .data-table td:nth-child(5)::before {
+    content: 'Review';
+    display: block;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semi);
+    color: var(--clr-text-3);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: var(--sp-1);
+  }
+
+  /* Status + Date row — flex side by side */
+  .admin-table-wrap .data-table td:nth-child(6) {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    padding: var(--sp-2) 0 0;
+    margin-right: var(--sp-3);
+  }
+  .admin-table-wrap .data-table td:nth-child(7) {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    padding: var(--sp-2) 0 0;
+    font-size: var(--fs-xs) !important;
+    color: var(--clr-text-3) !important;
+    white-space: nowrap !important;
+  }
+  .admin-table-wrap .data-table td:nth-child(7)::before {
+    content: '• ';
+    margin-right: 4px;
+    color: var(--clr-border-2);
+  }
+
+  /* Actions — full-width button row at bottom */
+  .admin-table-wrap .data-table td:nth-child(8) {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+    border: none;
+    padding: var(--sp-3) 0 0;
+    border-top: 1px solid var(--clr-border);
+    margin-top: var(--sp-2);
+  }
+  .admin-table-wrap .data-table td:nth-child(8) > div {
+    display: flex !important;
+    gap: var(--sp-2) !important;
+    flex-wrap: nowrap !important;
+  }
+  .admin-table-wrap .data-table td:nth-child(8) .btn {
+    min-height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-md);
+    background: var(--clr-bg-2);
+    border: 1px solid var(--clr-border);
+    font-size: var(--fs-sm);
+    transition: all var(--t-fast);
+  }
+  .admin-table-wrap .data-table td:nth-child(8) .btn[style*="success"]:hover,
+  .admin-table-wrap .data-table td:nth-child(8) .btn[style*="success"]:active {
+    background: var(--clr-success-bg);
+    border-color: var(--clr-success);
+  }
+  .admin-table-wrap .data-table td:nth-child(8) .btn[style*="error"]:hover,
+  .admin-table-wrap .data-table td:nth-child(8) .btn[style*="error"]:active {
+    background: var(--clr-error-bg);
+    border-color: var(--clr-error);
+  }
+
+  /* Empty state row */
+  .admin-table-wrap .data-table tr:has(td[colspan]) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--clr-border);
+    min-height: 120px;
+    background: transparent;
+    cursor: default;
+  }
+  .admin-table-wrap .data-table tr:has(td[colspan]) td {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    padding: var(--sp-6);
+    color: var(--clr-text-3);
+    font-size: var(--fs-sm);
+    position: static;
+  }
+  .admin-table-wrap .data-table tr:has(td[colspan]) td::before {
+    display: none !important;
+  }
+}
+
+/* ━━ SELECTED ROW — gold highlight on mobile ━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .admin-table-wrap .data-table tr[style*="rgba(201,168,76"] {
+    border-color: var(--clr-gold-dim) !important;
+    background: rgba(201,168,76,.05) !important;
+  }
+}
+
+/* ━━ BADGE SIZING on mobile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  .badge { font-size: 10px; padding: 3px 8px; white-space: nowrap; }
+}
+
+/* ━━ Source "Live" pill — slightly larger on mobile ━━━━━━━━━ */
+
+@media (max-width: 640px) {
+  span[style*="3b9eff"] { font-size: .6rem !important; }
+}

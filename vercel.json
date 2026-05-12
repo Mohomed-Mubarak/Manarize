@@ -1,0 +1,216 @@
+{
+  "buildCommand": "npm install && node build.js",
+  "functions": {
+    "api/health.js": {
+      "maxDuration": 5,
+      "memory": 128
+    },
+    "api/verify-captcha.js": {
+      "maxDuration": 8,
+      "memory": 128
+    },
+    "api/reviews.js": {
+      "maxDuration": 10,
+      "memory": 256
+    },
+    "api/whatsapp.js": {
+      "maxDuration": 10,
+      "memory": 128
+    },
+    "api/orders.js": {
+      "maxDuration": 15,
+      "memory": 256
+    },
+    "api/payhere-webhook.js": {
+      "maxDuration": 15,
+      "memory": 256
+    },
+    "api/admin/auth.js": {
+      "maxDuration": 10,
+      "memory": 256
+    },
+    "api/auth/session.js": {
+      "maxDuration": 10,
+      "memory": 128
+    },
+    "api/auth/profile.js": {
+      "maxDuration": 10,
+      "memory": 128
+    },
+    "api/admin/upload.js": {
+      "maxDuration": 30,
+      "memory": 512
+    },
+    "api/admin/orders.js": {
+      "maxDuration": 20,
+      "memory": 256
+    },
+    "api/admin/products.js": {
+      "maxDuration": 15,
+      "memory": 256
+    },
+    "api/admin/users.js": {
+      "maxDuration": 15,
+      "memory": 256
+    },
+    "api/admin/reviews.js": {
+      "maxDuration": 10,
+      "memory": 256
+    },
+    "api/**/*.js": {
+      "maxDuration": 15,
+      "memory": 256
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.svg"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(self \"https://www.payhere.lk\")"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-jzRN8Kl51wAbJ5kUZOR/uZZfVSzKYdNOhUl8f98Vci4=' 'sha256-U1fMZ0BBOfwADLOM3FeS9D/S26F+VU8RJETGgC3CkN0=' 'sha256-+8EzI7LE6sSw+uvCUJ0mJKTNtS190Qs43XvIGNxqt6A=' 'sha256-2NkuYb+Qp7t2a4pbMxyz20QI6qKaMhj0c0ML4AR2Bow=' 'sha256-2Rzhx9hGzr/mrC35NE1GZeTqKWcwze4nnq8oklGxUwk=' 'sha256-2hZkCGaLcnPnqiooDFYlgwdlGvVHu82YXYi8lEZ/0Lo=' 'sha256-4Oaw7lfvNM3cYeIwQB0/tNn8kCxHI96kAsX+ogrsaFg=' 'sha256-8bnqlZYCZArnCDPT40+mKDZAKWU9KavDWnlAjZ3CIH0=' 'sha256-Aere0vt+3MtoBiAgtgpynanlg4F4zG1IdMFGvbIsrzQ=' 'sha256-B5+lWuedu/k0TUmecStsAuVflRvfvYEQ+iwr+9jF5nQ=' 'sha256-CuDgMqx+F4IkSBPNk9syv9b60uAZFkQUe+2uPNFGf2A=' 'sha256-DI/en1Dcn6/J+FDE4Hg7h52iXM74r2/1NrtEab+xFKY=' 'sha256-EwxTgkYO30xeDreNh0RMHoJ8rkpAXUZClw7ONl7PNX8=' 'sha256-F1noxsLOnJhyRSgc0zu5JgzoLjG2BBMaXaSG24k2mRM=' 'sha256-Id3xd4z0Y23sJrUf0Sown1ghRpFSa7+63aF9tRCY+tA=' 'sha256-J5qz4uxaNrSBBqvb1HIXfFgJXiHqVpAkkaBZVKD77YQ=' 'sha256-MZdHV3tAm0zhDAMai2rGAnS9qXaXPz1cGCBVxQGFSFU=' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' 'sha256-QbolilktJCZT93+W6dPeBccTc4Y89o1dvvhYXEsd+eM=' 'sha256-UpMkLt+no5EgVIEcIHd8SFATIBs25VyrtxzpqQDNQ34=' 'sha256-YDUMt9L9M+UTYSLR5VsIWc/YYAB8OomnKiQIu71MS5k=' 'sha256-YwwYI47VInH3teSC9LqLKxjTFB6cqGIWUo7pvyDL8QQ=' 'sha256-b02ECr4px07K6VM+wk+u8tMG4WOef+VPTM870JyN63E=' 'sha256-jVfvdRRgUXVvFpIbKqGF+RnCgz4goPwuB0ZAPqS/fCU=' 'sha256-kFwCQyEtnvZQf9/UO4R0bg69rWfSmLDKutB0Z54FTHc=' 'sha256-n8p5BW1APdJ9KE8mEtq9XWwxlcObUM+0dHgeitp6Ei0=' 'sha256-pwQduWxX3Cm7lLbQmAos7n73RLP4QrsCDFejmsBdZ78=' 'sha256-sY3j4qaMll9WP6y1dszEJ/T8Lq+TDSxb+QJWZ9p/tg0=' 'sha256-xG6ICnfw6BO+wkYyA5FQ17FEXkl/3n+2y4dWUAoinWk=' 'sha256-WWihp4ciV9BK6aWL5qvXqklo6lSvrgTeYMUGLPov5N8=' 'sha256-mrrbOgwORyfEi86Tf0LzYpsANMzLJGXhlS9hR5xbCW8=' 'sha256-psSWGZbR4v3SevGsHVZDuxRwN65MAoqzYe86kF2CeCA=' 'sha256-2RG7/BjLAcdU7+jc4CwvoVz+XY7RlHX8aZq8LfxnOyQ=' 'sha256-GXVrbe14JWNhwj89fl6FHxcnVNkQnQokaXAYQ1KkWIE=' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.emailjs.com https://www.payhere.lk https://static.cloudflareinsights.com https://challenges.cloudflare.com https://js.hcaptcha.com https://newassets.hcaptcha.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://images.unsplash.com https://source.unsplash.com https://*.supabase.co https://placehold.co https://via.placeholder.com https://lh3.googleusercontent.com https://imgs.hcaptcha.com https://img.icons8.com https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net https://*.supabase.co wss://*.supabase.co https://app.posthog.com https://api.emailjs.com https://cloudflareinsights.com https://graph.facebook.com https://hcaptcha.com https://*.hcaptcha.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; frame-src https://www.payhere.lk https://challenges.cloudflare.com https://newassets.hcaptcha.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://www.payhere.lk;"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/js/env.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/dist/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.webp|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.svg|.*\\.ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

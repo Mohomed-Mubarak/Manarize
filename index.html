@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+  <!-- font-preload removed: consolidated below -->
+  <script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+  <!-- zm-critical-loader-css -->
+  <style id="critical-css">
+/* Critical above-fold CSS — inlined for FCP */
+:root{--clr-bg:#0d0f14;--clr-bg-2:#12151c;--clr-surface:#1e2330;--clr-border:#2a3045;--clr-gold:#c9a84c;--clr-gold-bg:rgba(201,168,76,.10);--clr-text:#e8eaf0;--clr-text-2:#a0a8bc;--clr-text-3:#667080;--clr-text-inv:#0d0f14;--nav-h:60px;--ff-display:"Playfair Display",Georgia,serif;--ff-body:"DM Sans",system-ui,sans-serif;--fs-sm:.875rem;--fs-xl:1.25rem;--fw-medium:500;--fw-bold:700;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--r-md:8px;--t-fast:150ms ease;--t-base:220ms ease;--z-sticky:100}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-family:var(--ff-body);background:var(--clr-bg);color:var(--clr-text);line-height:1.6;-webkit-text-size-adjust:100%}
+body{min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.navbar{position:sticky;top:0;z-index:var(--z-sticky);background:rgba(13,15,20,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--clr-border);height:var(--nav-h);transition:box-shadow var(--t-base)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;height:100%;gap:var(--sp-4);max-width:1280px;margin:0 auto;padding:0 var(--sp-4)}
+.navbar-logo{font-family:var(--ff-display);font-size:var(--fs-xl);font-weight:700;color:var(--clr-text);flex-shrink:0}
+.navbar-logo span{color:var(--clr-gold)}
+.navbar-actions{display:flex;align-items:center;gap:var(--sp-2);flex-shrink:0}
+.nav-icon-btn{position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-md);color:var(--clr-text-2);cursor:pointer;background:none;border:none}
+</style>
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Manarize — Premium Online Shopping in Sri Lanka</title>
+  <meta name="description"
+    content="Discover premium products from top brands. Electronics, Fashion, Home & Living, and more. Fast delivery across Sri Lanka.">
+  <link rel="canonical" href="https://manarize.lk/">
+  <meta property="og:title" content="Manarize — Premium Online Shopping in Sri Lanka">
+  <meta property="og:description" content="Discover premium products. Fast delivery across Sri Lanka.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manarize.lk/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  <!-- Performance: DNS prefetch & preconnect for all critical origins -->
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <!-- Supabase preconnect — replace YOUR_PROJECT with actual project ref -->
+  <link rel="dns-prefetch" href="https://YOUR_PROJECT.supabase.co">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <!-- Supabase API preconnect — eliminates first-request DNS+TLS cost -->
+  <link rel="preconnect" href="https://YOUR_PROJECT.supabase.co" crossorigin>
+
+</noscript>
+
+  
+
+  <!-- CSS loaded as parallel <link> tags (replaces @import chain in style.css) -->
+  <link rel="stylesheet" href="css/variables.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="css/base.css?v=561e7c7d" media="print" data-defer="true">
+  <!-- animations.css: below-fold only — safe to defer -->
+  <link rel="stylesheet" href="css/animations.css?v=561e7c7d" media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="css/animations.css?v=561e7c7d"></noscript>
+  <link rel="stylesheet" href="css/components.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="css/layout.css?v=561e7c7d" media="print" data-defer="true">
+  <!-- storefront.css: contains hero search + above-fold styles — must load synchronously -->
+  <link rel="stylesheet" href="css/storefront.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="css/mobile.css?v=561e7c7d" media="print" data-defer="true">
+
+  <!-- Organization JSON-LD (Google Knowledge Panel) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Manarize",
+    "url": "https://manarize.lk",
+    "logo": "https://manarize.lk/images/logo.png",
+    "description": "Premium online shopping in Sri Lanka. Electronics, Fashion, Home & Living and more with fast island-wide delivery.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+94-77-123-4567",
+      "contactType": "customer service",
+      "areaServed": "LK",
+      "availableLanguage": ["English", "Sinhala"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Colombo",
+      "addressCountry": "LK"
+    },
+    "sameAs": [
+      "https://facebook.com/manarize",
+      "https://instagram.com/manarize",
+      "https://tiktok.com/@manarize"
+    ]
+  }
+  </script>
+
+  <!-- WebSite JSON-LD (enables Google Sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Manarize",
+    "url": "https://manarize.lk",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://manarize.lk/search.html?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/index.css?v=561e7c7d" media="print" data-defer="true">
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/home.js?v=561e7c7d">
+
+</head>
+
+<body>
+  <!-- Skip link -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-logo">Manarize</div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div id="page-progress"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+
+    <!-- ── HERO ──────────────────────────────────────────── -->
+    <section class="hero">
+      <!-- Anime.js particle canvas -->
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+      <div class="container" id="hero-grid"
+        style="display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;width:100%;min-height:calc(100vh - 64px)">
+        <div class="hero-content anim-fade-up">
+          <div class="hero-eyebrow">New Collection 2026</div>
+          <h1 class="hero-title">
+            Shop the <em>Finest</em><br>in Sri Lanka
+          </h1>
+          <p class="hero-desc">
+            Curated premium products delivered to your doorstep. From authentic Ceylon spices to the latest electronics
+            — all in one place.
+          </p>
+          <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-store"></i> Explore Shop
+            </a>
+            <a href="about.html" class="btn btn-outline btn-lg">Our Story</a>
+          </div>
+
+          <!-- Hero Search -->
+          <div class="hero-search-wrap">
+            <div class="hero-search">
+              <input type="text" id="hero-search-input" placeholder="Search products…" autocomplete="off">
+              <button id="hero-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div id="search-dropdown" hidden></div>
+          </div>
+        </div>
+
+        <div class="hero-media anim-scale-in delay-2" style="position:relative;background:linear-gradient(135deg,rgba(201,168,76,.08) 0%,rgba(160,122,48,.04) 100%);border-radius:16px;min-height:300px" id="hero-demo">
+          <img id="hero-product-img" src="" alt="Featured product" loading="eager" fetchpriority="high" decoding="async"
+            style="width:100%;height:100%;object-fit:contain;border-radius:12px;display:block;opacity:0;transition:opacity .5s ease">
+
+          <div class="hero-badge anim-fade-up delay-3" id="hero-badge">
+            <div class="product-mini-name" id="hero-badge-name">Premium Wireless Earbuds</div>
+            <div class="product-mini-price" id="hero-badge-price">Rs. 14,900</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CATEGORIES ─────────────────────────────────────── -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title">Browse Categories</h2>
+            <div class="divider"></div>
+          </div>
+          <a href="shop.html" class="view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="cat-grid" id="categories-grid">
+          <!-- Populated by JS -->
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+          <div class="skeleton" style="height:120px;border-radius:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURED PRODUCTS ──────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title">Featured Products</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Hand-picked selections for you</p>
+          </div>
+          <a href="shop.html" class="view-all">All Products <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="featured-grid" id="featured-products">
+          <!-- Skeleton -->
+          <div class="skeleton" style="height:360px;border-radius:8px"></div>
+          <div class="skeleton" style="height:360px;border-radius:8px"></div>
+          <div class="skeleton" style="height:360px;border-radius:8px"></div>
+          <div class="skeleton" style="height:360px;border-radius:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROMO BANNER ───────────────────────────────────── -->
+    <section class="section-sm" id="promo-section" style="content-visibility:auto;contain-intrinsic-size:0 200px">
+      <div class="container">
+        <div class="promo-banner reveal">
+          <div>
+            <div class="promo-eyebrow" id="promo-eyebrow-text">Limited Time Offer</div>
+            <h2 id="promo-title-text">Mega Sale — Up to 30% Off</h2>
+            <p id="promo-desc-text">Don't miss out on our biggest sale of the season. Premium products at unbeatable
+              prices.</p>
+            <a href="shop.html" class="btn btn-primary" id="promo-btn-link">Shop the Sale</a>
+          </div>
+          <div id="promo-timer-wrap">
+            <p
+              style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clr-text-3);margin-bottom:1rem">
+              Sale ends in:</p>
+            <div class="promo-timer">
+              <div class="promo-timer-block">
+                <span class="num" id="timer-h">23</span>
+                <span class="lbl">Hours</span>
+              </div>
+              <div class="promo-timer-block">
+                <span class="num" id="timer-m">59</span>
+                <span class="lbl">Mins</span>
+              </div>
+              <div class="promo-timer-block">
+                <span class="num" id="timer-s">59</span>
+                <span class="lbl">Secs</span>
+              </div>
+            </div>
+            <p id="promo-end-date-display" style="font-size:.7rem;color:var(--clr-text-3);margin-top:.75rem;letter-spacing:.05em;display:none"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NEW ARRIVALS ───────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title">New Arrivals</h2>
+            <div class="divider"></div>
+          </div>
+          <a href="shop.html?sort=newest" class="view-all">See All <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="new-arrivals-grid" id="new-arrivals">
+          <div class="skeleton" style="height:300px;border-radius:8px"></div>
+          <div class="skeleton" style="height:300px;border-radius:8px"></div>
+          <div class="skeleton" style="height:300px;border-radius:8px"></div>
+          <div class="skeleton" style="height:300px;border-radius:8px"></div>
+          <div class="skeleton" style="height:300px;border-radius:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TRUST BADGES ───────────────────────────────────── -->
+    <section class="section-sm"
+      style="background:var(--clr-bg-2);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border)">
+      <div class="container">
+        <div class="grid-4">
+          <div class="trust-badge reveal">
+            <i class="fa-solid fa-truck"></i>
+            <h4>Free Delivery</h4>
+            <p>On orders over Rs. 5,000</p>
+          </div>
+          <div class="trust-badge reveal delay-1">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h4>Secure Payments</h4>
+            <p>256-bit SSL encryption</p>
+          </div>
+          <div class="trust-badge reveal delay-2">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <h4>Easy Returns</h4>
+            <p>7-day return policy</p>
+          </div>
+          <div class="trust-badge reveal delay-3">
+            <i class="fa-brands fa-whatsapp"></i>
+            <h4>24/7 Support</h4>
+            <p>Chat with us on WhatsApp</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RECENT REVIEWS ────────────────────────────────────── -->
+    <section class="section" id="reviews-section" style="content-visibility:auto;contain-intrinsic-size:0 500px;display:none">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title" id="reviews-section-title">What Our Customers Say</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle" id="reviews-section-subtitle">Real experiences from real shoppers</p>
+          </div>
+          <a href="shop.html" class="view-all" id="reviews-section-cta" style="display:none">Shop Now <i
+              class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="reviews-grid" id="homepage-reviews-grid">
+          <!-- Populated by home.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NEWSLETTER ─────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="newsletter-block reveal">
+          <h3>Stay in the Loop</h3>
+          <p>Get exclusive deals, new arrivals, and insider news delivered to your inbox.</p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Your email address" required id="newsletter-email">
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+          <p style="font-size:.75rem;color:var(--clr-text-3);margin-top:1rem">
+            No spam, ever. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Manarize",
+    "url": "https://manarize.lk",
+    "description": "Premium online shopping in Sri Lanka",
+    "address": { "@type": "PostalAddress", "addressCountry": "LK" }
+  }
+  </script>
+
+  <script type="module" src="/dist/js/home.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+
+</html>

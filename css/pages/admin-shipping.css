@@ -1,0 +1,149 @@
+/* =============================================================================
+   ADMIN-SHIPPING.CSS — Admin Shipping Zone Management Styles
+   -----------------------------------------------------------------------------
+   Purpose : Grid of shipping zone cards, each with editable price/day-range fields
+   and a district tag list.
+=============================================================================== */
+
+/* ── Zone grid ───────────────────────────────────────────── */
+    
+/* ── Zone Grid ─── Auto-fill grid of shipping zone cards ───────────────────── */
+.zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+    
+/* ── Zone Card ─── Single shipping zone (name, price, days, districts) ─────── */
+.zone-card {
+      background: var(--clr-bg-1);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      padding: 1.125rem 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .zone-card:hover {
+      border-color: var(--clr-gold-dim);
+      box-shadow: 0 0 0 1px var(--clr-gold-dim);
+    }
+    .zone-card.flash-ok {
+      border-color: var(--clr-success) !important;
+      box-shadow: 0 0 0 1px var(--clr-success) !important;
+    }
+    .zone-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .zone-card-name {
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--clr-text);
+    }
+    .zone-card-id {
+      font-size: .6875rem;
+      font-family: var(--ff-mono);
+      color: var(--clr-text-3);
+    }
+    
+/* ── Fields Grid ─── Two-column: price + days-range ─────────────────────────── */
+
+/* ── Individual Field ─── Label + input wrapper ──────────────────────────────── */
+.zone-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .625rem;
+    }
+    .zone-field label {
+      display: block;
+      font-size: .6875rem;
+      font-weight: 600;
+      color: var(--clr-text-3);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: .3rem;
+    }
+    .zone-field .field-wrap {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      background: var(--clr-bg-2);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-md);
+      padding: .3rem .5rem;
+    }
+    .zone-field .field-wrap:focus-within {
+      border-color: var(--clr-gold);
+    }
+    .zone-field .field-prefix {
+      font-size: .75rem;
+      color: var(--clr-text-3);
+      flex-shrink: 0;
+    }
+    .zone-field input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--ff-mono);
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--clr-gold);
+      width: 100%;
+      min-width: 0;
+    }
+    .zone-days-wrap {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      background: var(--clr-bg-2);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-md);
+      padding: .3rem .5rem;
+    }
+    .zone-days-wrap:focus-within { border-color: var(--clr-gold); }
+    .zone-days-wrap input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--ff-mono);
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--clr-gold);
+      width: 34px;
+      text-align: center;
+    }
+    .zone-days-wrap .dash {
+      color: var(--clr-text-3);
+      font-size: .8rem;
+    }
+    
+/* ── District Tags ─── Wrapped list of district name chips ─────────────────── */
+.zone-districts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .275rem;
+    }
+    
+/* ── District Tag Chip ───────────────────────────────────────────────────────── */
+.district-tag {
+      font-size: .6875rem;
+      background: var(--clr-bg-2);
+      border: 1px solid var(--clr-border);
+      border-radius: 4px;
+      padding: .1rem .4rem;
+      color: var(--clr-text-2);
+      white-space: nowrap;
+    }
+    
+/* ── Card Footer ─── Save button aligned right ──────────────────────────────── */
+.zone-card-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: .375rem;
+      border-top: 1px solid var(--clr-border);
+    }

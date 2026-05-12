@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Order Confirmed — Manarize</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/order-success.css?v=561e7c7d" media="print" data-defer="true">
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/order-success.js?v=561e7c7d">
+
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <div class="container" style="max-width:800px">
+      <!-- Success hero -->
+      <div class="success-hero">
+        <div class="success-icon anim-scale-in">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h1 class="anim-fade-up delay-1">Order Confirmed!</h1>
+        <p class="anim-fade-up delay-2">Thank you for your purchase. A confirmation has been sent to your email.</p>
+        <div class="order-number-box anim-fade-up delay-3">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span id="order-number">ORD-000000</span>
+        </div>
+        <div class="order-actions anim-fade-up delay-4">
+          <button class="btn btn-outline" id="btn-print">
+            <i class="fa-solid fa-print"></i> Print Invoice
+          </button>
+          <button class="btn btn-ghost" id="btn-download-pdf">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF
+          </button>
+          <a id="btn-whatsapp" href="#" target="_blank" class="btn btn-success" style="background:var(--clr-whatsapp);border-color:var(--clr-whatsapp)">
+            <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Bank transfer payment notice -->
+      <div id="bank-notice" style="display:none;margin-bottom:2rem">
+        <div style="background:var(--clr-warning-bg);border:1px solid rgba(243,156,18,.3);border-radius:var(--r-xl);padding:1.5rem;text-align:left;max-width:640px;margin:0 auto">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+            <i class="fa-solid fa-building-columns" style="font-size:1.375rem;color:var(--clr-warning)"></i>
+            <h3 style="font-size:1.125rem;color:var(--clr-text)">Complete Your Bank Transfer</h3>
+          </div>
+          <p style="font-size:.9375rem;color:var(--clr-text-2);margin-bottom:1rem">
+            Please transfer the exact order amount to the bank account below. Your order will be confirmed once payment is verified (usually within 2–4 hours on business days).
+          </p>
+          <div style="background:var(--clr-surface);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem;font-size:.875rem">
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:.5rem .75rem">
+              <span style="color:var(--clr-text-3)">Bank</span>
+              <span id="bank-notice-name" style="font-weight:500"></span>
+              <span style="color:var(--clr-text-3)">Account</span>
+              <span id="bank-notice-holder" style="font-weight:500"></span>
+              <span style="color:var(--clr-text-3)">Number</span>
+              <span id="bank-notice-acct" style="font-family:var(--ff-mono);font-weight:700;color:var(--clr-gold);font-size:1rem;letter-spacing:.05em"></span>
+              <span style="color:var(--clr-text-3)">Reference</span>
+              <span style="font-family:var(--ff-mono);font-weight:600" id="bank-ref-display"></span>
+            </div>
+          </div>
+          <a id="bank-notice-wa" href="#" target="_blank" class="btn btn-success" style="background:var(--clr-whatsapp);border-color:var(--clr-whatsapp)">
+            <i class="fa-brands fa-whatsapp"></i> Send Payment Slip via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Order tracking steps -->
+      <div class="card" style="margin-bottom:2rem">
+        <h3 style="margin-bottom:1.5rem;font-size:1.125rem">Order Status</h3>
+        <div class="track-steps" id="track-steps">
+          <div class="track-step done" id="step-placed">
+            <div class="track-dot"><i class="fa-solid fa-circle-check"></i></div>
+            <span class="track-label">Order Placed</span>
+          </div>
+          <div class="track-step" id="step-confirmed">
+            <div class="track-dot"><i class="fa-solid fa-circle-check"></i></div>
+            <span class="track-label">Confirmed</span>
+          </div>
+          <div class="track-step" id="step-shipped">
+            <div class="track-dot"><i class="fa-solid fa-truck"></i></div>
+            <span class="track-label">Shipped</span>
+          </div>
+          <div class="track-step" id="step-delivered">
+            <div class="track-dot"><i class="fa-solid fa-house"></i></div>
+            <span class="track-label">Delivered</span>
+          </div>
+        </div>
+        <div style="margin-top:1rem;padding:.75rem;background:var(--clr-bg-2);border-radius:var(--r-md);font-size:.875rem;color:var(--clr-text-2)">
+          <i class="fa-solid fa-truck" style="color:var(--clr-gold);margin-right:.5rem"></i>
+          Estimated delivery: <strong id="delivery-estimate">2–4 Business Days</strong>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="card" style="margin-bottom:2rem">
+        <h3 style="margin-bottom:1.25rem;font-size:1.125rem">Order Details</h3>
+        <div id="success-order-items"></div>
+        <hr>
+        <div style="display:flex;flex-direction:column;gap:.5rem;max-width:300px;margin-left:auto">
+          <div style="display:flex;justify-content:space-between;font-size:.875rem;color:var(--clr-text-2)">
+            <span>Subtotal</span><span id="so-subtotal" style="font-family:var(--ff-mono)"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.875rem;color:var(--clr-text-2)">
+            <span>Shipping</span><span id="so-shipping" style="font-family:var(--ff-mono)"></span>
+          </div>
+          <div id="so-discount-row" style="display:none;justify-content:space-between;font-size:.875rem;color:var(--clr-success)">
+            <span>Discount</span><span id="so-discount" style="font-family:var(--ff-mono)"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-weight:600;font-size:1.125rem;color:var(--clr-text);padding-top:.5rem;border-top:1px solid var(--clr-border)">
+            <span>Total</span>
+            <span id="so-total" style="font-family:var(--ff-mono);color:var(--clr-gold)"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery address -->
+      <div class="card" style="margin-bottom:2rem">
+        <h3 style="margin-bottom:1rem;font-size:1.125rem">Delivery Address</h3>
+        <div id="delivery-address" style="color:var(--clr-text-2);line-height:1.8"></div>
+      </div>
+
+      <!-- Order notes (hidden when empty) -->
+      <div id="order-notes-section" class="card" style="margin-bottom:2rem;display:none">
+        <h3 style="margin-bottom:.75rem;font-size:1.125rem">
+          <i class="fa-regular fa-note-sticky" style="color:var(--clr-gold);margin-right:.5rem"></i>Order Notes
+        </h3>
+        <p id="order-notes-text" style="color:var(--clr-text-2);line-height:1.7;margin:0"></p>
+      </div>
+
+      <!-- Hidden invoice for print -->
+      <div id="invoice-print" style="display:none"></div>
+
+      <div style="text-align:center;margin:2rem 0">
+        <a href="shop.html" class="btn btn-primary">
+          <i class="fa-solid fa-store"></i> Continue Shopping
+        </a>
+        <a href="profile.html" class="btn btn-ghost" style="margin-left:1rem">
+          <i class="fa-regular fa-circle-user"></i> View My Orders
+        </a>
+      </div>
+    </div>
+  </main>
+<script type="module" src="/dist/js/order-success.js?v=561e7c7d"></script>
+
+<!-- Confetti -->
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999"></canvas>
+  <script src="js/confetti.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

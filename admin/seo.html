@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SEO Settings — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-seo.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/pages/admin-seo-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div><div id="toast-container"></div>
+
+  <form id="seo-form" novalidate style="max-width:760px">
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <h4 style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+        <i class="fa-solid fa-magnifying-glass" style="color:var(--clr-gold)"></i> Homepage Meta Tags
+      </h4>
+      <div class="form-group">
+        <label class="form-label">
+          Meta Title
+          <span style="float:right;font-size:.75rem;font-weight:400">
+            <span id="seo-title-count">0</span>/60 chars
+          </span>
+        </label>
+        <input class="form-control" type="text" id="seo-title" maxlength="80">
+        <div class="form-hint">Recommended: 50–60 characters. Shown in browser tabs and search results.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">
+          Meta Description
+          <span style="float:right;font-size:.75rem;font-weight:400">
+            <span id="seo-desc-count">0</span>/160 chars
+          </span>
+        </label>
+        <textarea class="form-control" id="seo-desc" rows="3" maxlength="200"></textarea>
+        <div class="form-hint">Recommended: 150–160 characters. Shown in Google search snippets.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <h4 style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+        <i class="fa-solid fa-share-nodes" style="color:var(--clr-gold)"></i> Social Sharing (Open Graph)
+      </h4>
+      <div class="form-group">
+        <label class="form-label">OG Image URL</label>
+        <input class="form-control" type="url" id="seo-og-img" placeholder="https://manarize.lk/og-image.jpg">
+        <div class="form-hint">Recommended size: 1200×630px. Shown when sharing links on Facebook, WhatsApp etc.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Twitter / X Handle</label>
+        <input class="form-control" type="text" id="seo-twitter" placeholder="@manarize_lk">
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <h4 style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+        <i class="fa-brands fa-google" style="color:var(--clr-gold)"></i> Google Integration
+      </h4>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Google Analytics ID</label>
+          <input class="form-control" type="text" id="seo-ga" placeholder="G-XXXXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Google Site Verification</label>
+          <input class="form-control" type="text" id="seo-gsv" placeholder="xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Canonical Base URL</label>
+        <input class="form-control" type="url" id="seo-canonical" placeholder="https://manarize.lk">
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <h4 style="font-size:.9375rem;font-weight:600;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+        <i class="fa-solid fa-robot" style="color:var(--clr-gold)"></i> Search Engine Indexing
+      </h4>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.875rem;background:var(--clr-bg-2);border-radius:var(--r-md);border:1px solid var(--clr-border)">
+        <div>
+          <div style="font-size:.875rem;font-weight:500">Allow search engines to index this site</div>
+          <div style="font-size:.75rem;color:var(--clr-text-3)">Disabling will add noindex to all pages</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="seo-index" checked>
+          <div class="toggle-track"></div><div class="toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;align-items:center">
+      <button type="submit" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-circle-check"></i> Save SEO Settings
+      </button>
+      <a href="../sitemap.xml" target="_blank" class="btn btn-ghost">
+        <i class="fa-solid fa-sitemap"></i> View Sitemap
+      </a>
+      <a href="../robots.txt" target="_blank" class="btn btn-ghost">
+        <i class="fa-solid fa-robot"></i> View robots.txt
+      </a>
+    </div>
+  </form>
+
+<script type="module" src="/dist/js/pages/admin-seo-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

@@ -1,0 +1,825 @@
+/* ============================================================
+   ZENMARKET — ADMIN PANEL STYLES
+   ============================================================ */
+
+/* ── ADMIN SHELL ─────────────────────────────────────────── */
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.admin-sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--clr-bg-2);
+  border-right: 1px solid var(--clr-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  z-index: var(--z-sticky);
+  overflow-y: auto;
+  transition: transform var(--t-slow);
+}
+
+.sidebar-logo {
+  padding: var(--sp-6);
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.sidebar-logo .logo-text {
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--clr-text);
+}
+.sidebar-logo .logo-text span { color: var(--clr-gold); }
+.sidebar-logo .admin-tag {
+  font-size: var(--fs-xs);
+  background: var(--clr-gold-bg);
+  color: var(--clr-gold);
+  padding: 1px var(--sp-2);
+  border-radius: var(--r-sm);
+  margin-left: auto;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--sp-4);
+}
+.sidebar-section-label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--clr-text-3);
+  padding: var(--sp-3) var(--sp-3) var(--sp-2);
+  margin-top: var(--sp-4);
+}
+.sidebar-section-label:first-child { margin-top: 0; }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-3);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-3);
+  text-decoration: none;
+  transition: all var(--t-fast);
+  margin-bottom: 2px;
+  position: relative;
+}
+.sidebar-link i { width: 16px; text-align: center; flex-shrink: 0; }
+.sidebar-link:hover {
+  background: var(--clr-surface);
+  color: var(--clr-text);
+}
+.sidebar-link.active {
+  background: var(--clr-gold-bg);
+  color: var(--clr-gold);
+}
+.sidebar-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px; bottom: 4px;
+  width: 3px;
+  background: var(--clr-gold);
+  border-radius: var(--r-full);
+}
+.sidebar-badge {
+  margin-left: auto;
+  min-width: 18px; height: 18px;
+  background: var(--clr-error);
+  color: #fff;
+  border-radius: var(--r-full);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--sp-1);
+}
+
+.sidebar-user {
+  padding: var(--sp-4);
+  border-top: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.sidebar-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--clr-gold-bg);
+  border: 1px solid var(--clr-gold-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-gold);
+  font-size: var(--fs-sm);
+  flex-shrink: 0;
+}
+.sidebar-user-name { font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+.sidebar-user-role { font-size: var(--fs-xs); color: var(--clr-text-3); }
+.sidebar-logout {
+  margin-left: auto;
+  color: var(--clr-text-3);
+  cursor: pointer;
+  transition: color var(--t-fast);
+  background: none;
+  border: none;
+  font-size: var(--fs-sm);
+}
+.sidebar-logout:hover { color: var(--clr-error); }
+
+/* ── ADMIN MAIN ──────────────────────────────────────────── */
+.admin-main {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── ADMIN TOPBAR ────────────────────────────────────────── */
+.admin-topbar {
+  height: 60px;
+  background: var(--clr-bg-2);
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-6);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+}
+.admin-topbar-left { display: flex; align-items: center; gap: var(--sp-4); }
+.admin-page-title { font-size: var(--fs-md); font-weight: var(--fw-semi); }
+.admin-topbar-right { display: flex; align-items: center; gap: var(--sp-3); }
+.admin-topbar-btn {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  color: var(--clr-text-2);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: all var(--t-fast);
+}
+.admin-topbar-btn:hover { background: var(--clr-surface); color: var(--clr-gold); }
+
+.admin-sidebar-toggle {
+  display: none;
+  width: 36px; height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  color: var(--clr-text-2);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: var(--fs-lg);
+}
+
+/* ── ADMIN CONTENT ───────────────────────────────────────── */
+.admin-content {
+  flex: 1;
+  padding: var(--sp-6);
+}
+
+/* ── ADMIN KPI ROW ───────────────────────────────────────── */
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+/* ── ADMIN TOOLBAR ───────────────────────────────────────── */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+  flex-wrap: wrap;
+}
+.admin-toolbar-left, .admin-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+/* ── ADMIN TABLE WRAPPER ─────────────────────────────────── */
+.admin-table-wrap {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.admin-table-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.admin-table-footer {
+  padding: var(--sp-4) var(--sp-5);
+  border-top: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+/* Product thumbnail in table */
+.prod-thumb {
+  width: 44px; height: 44px;
+  border-radius: var(--r-sm);
+  object-fit: cover;
+  background: var(--clr-bg-2);
+}
+.prod-info { display: flex; flex-direction: column; gap: 2px; }
+.prod-info .name { font-weight: var(--fw-medium); color: var(--clr-text); font-size: var(--fs-sm); }
+.prod-info .sku { font-family: var(--ff-mono); font-size: var(--fs-xs); color: var(--clr-text-3); }
+
+/* Order customer info */
+.order-customer { display: flex; flex-direction: column; gap: 2px; }
+.order-customer .cust-name { font-weight: var(--fw-medium); color: var(--clr-text); font-size: var(--fs-sm); }
+.order-customer .cust-email { font-size: var(--fs-xs); color: var(--clr-text-3); }
+
+/* ── PRODUCT EDIT FORM ───────────────────────────────────── */
+.product-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--sp-6);
+  align-items: start;
+}
+@media (max-width: 1100px) { .product-edit-grid { grid-template-columns: 1fr; } }
+
+.image-upload-zone {
+  border: 2px dashed var(--clr-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+.image-upload-zone:hover, .image-upload-zone.dragover {
+  border-color: var(--clr-gold);
+  background: var(--clr-gold-bg);
+}
+.image-upload-zone i {
+  font-size: var(--fs-3xl);
+  color: var(--clr-text-3);
+  margin-bottom: var(--sp-3);
+}
+.image-upload-zone p { color: var(--clr-text-3); font-size: var(--fs-sm); }
+
+.image-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+.img-preview-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--clr-bg-2);
+}
+.img-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+.img-preview-remove {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 20px; height: 20px;
+  background: var(--clr-error);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+.img-preview-item:hover .img-preview-remove { opacity: 1; }
+
+/* ── ADMIN LIVE INDICATOR ────────────────────────────────── */
+.live-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--clr-success);
+}
+.live-dot::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--clr-success);
+  animation: goldPulse 2s ease infinite;
+}
+
+/* Mobile admin sidebar */
+@media (max-width: 900px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+    transition: transform var(--t-slow), box-shadow var(--t-slow);
+  }
+  .admin-sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-xl);
+  }
+  .admin-main { margin-left: 0; }
+  .admin-sidebar-toggle { display: flex; }
+  .admin-content { padding: var(--sp-4); }
+  .admin-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Orders table action column ── */
+.orders-action-cell { white-space: nowrap; }
+.orders-action-cell .btn { padding: .25rem .5rem; font-size: .75rem; }
+
+/* ── Bulk action bar ── */
+#bulk-delete-btn { animation: fadeIn .2s ease; }
+
+/* ── Order detail bank slip ── */
+.bank-slip-img { max-height: 220px; border-radius: 8px; border: 1px solid var(--clr-border); display: block; }
+
+/* ── Settings biz hours row ── */
+#biz-hours-editor input:disabled { cursor: not-allowed; }
+
+/* ── Payment option badges ── */
+.payment-option.bank-option { border-color: var(--clr-gold-dim); }
+.payment-option.bank-option.selected { border-color: var(--clr-gold); background: var(--clr-gold-bg); }
+
+/* ── Toggle switch (product list) ── */
+.toggle { display: inline-flex; align-items: center; }
+.toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: relative;
+  width: 40px; height: 22px;
+  background: var(--clr-border-2);
+  border-radius: 99px;
+  transition: background var(--t-base);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.toggle input:checked + .toggle-track { background: var(--clr-gold); }
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 16px; height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  transition: transform var(--t-base);
+}
+.toggle input:checked + .toggle-track::after { transform: translateX(18px); }
+/* Hide old separate thumb div when using new ::after approach */
+.toggle .toggle-thumb { display: none; }
+
+/* ── Admin confirm modal upgrade ── */
+#confirm-modal .modal {
+  border-color: var(--clr-border-2);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+}
+#confirm-modal .modal-header {
+  padding: var(--sp-5) var(--sp-6);
+}
+#confirm-modal .modal-body p {
+  font-size: .9375rem;
+  color: var(--clr-text-2);
+  line-height: 1.6;
+}
+#confirm-modal .modal-footer {
+  padding: var(--sp-4) var(--sp-6);
+  gap: var(--sp-3);
+}
+
+/* ── Admin toast — position below topbar ── */
+.admin-shell #toast-container {
+  top: calc(56px + var(--sp-4));
+  right: var(--sp-5);
+  z-index: var(--z-toast);
+}
+
+/* ── Admin page inline alert messages ── */
+.admin-alert {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-4);
+}
+.admin-alert-success { background: var(--clr-success-bg); color: var(--clr-success); border: 1px solid rgba(46,204,113,.2); }
+.admin-alert-error   { background: var(--clr-error-bg);   color: var(--clr-error);   border: 1px solid rgba(231,76,60,.2); }
+.admin-alert-warning { background: var(--clr-warning-bg); color: var(--clr-warning); border: 1px solid rgba(243,156,18,.2); }
+.admin-alert-info    { background: var(--clr-info-bg);    color: var(--clr-info);    border: 1px solid rgba(52,152,219,.2); }
+
+/* ── THEME OVERRIDES FOR ADMIN PANEL ─────────────────────── */
+[data-theme="light"] .admin-sidebar {
+  background: #ffffff;
+  border-right-color: var(--clr-border);
+}
+[data-theme="light"] .admin-topbar {
+  background: rgba(255,255,255,.95);
+  border-bottom-color: var(--clr-border);
+}
+[data-theme="light"] .sidebar-link {
+  color: var(--clr-text-2);
+}
+[data-theme="light"] .sidebar-link:hover,
+[data-theme="light"] .sidebar-link.active {
+  background: var(--clr-gold-bg);
+  color: var(--clr-gold);
+}
+[data-theme="light"] .data-table th {
+  background: var(--clr-bg-2);
+}
+[data-theme="light"] .data-table tr:hover td {
+  background: var(--clr-bg-2);
+}
+[data-theme="light"] .admin-table-wrap {
+  background: var(--clr-surface);
+  border-color: var(--clr-border);
+}
+[data-theme="light"] .kpi-card {
+  border-color: var(--clr-border);
+}
+
+[data-theme="warm"] .admin-sidebar {
+  background: var(--clr-surface);
+  border-right-color: var(--clr-border);
+}
+[data-theme="warm"] .admin-topbar {
+  background: rgba(15,12,7,.96);
+}
+
+/* ── THEME TOGGLE (admin) ───────────────────────────────────── */
+/* layout.css is not loaded in admin pages, so all theme-menu   */
+/* base styles must live here.                                   */
+
+.theme-toggle-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  z-index: var(--z-sticky);
+  isolation: isolate;
+}
+
+.theme-menu {
+  position: fixed;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border-2);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-xl);
+  padding: var(--sp-2);
+  min-width: 160px;
+  z-index: var(--z-toast);
+  animation: themeMenuIn .18s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+/* Critical: keep the menu hidden until toggled */
+.theme-menu[hidden] { display: none !important; }
+
+@keyframes themeMenuIn {
+  from { opacity: 0; transform: translateY(-6px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+
+.theme-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  border: none;
+  background: none;
+  color: var(--clr-text-2);
+  font-size: var(--fs-sm);
+  font-family: var(--ff-body);
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+  text-align: left;
+}
+.theme-menu-item:hover {
+  background: var(--clr-bg-2);
+  color: var(--clr-text);
+}
+.theme-menu-item.active {
+  color: var(--clr-gold);
+  background: var(--clr-gold-bg);
+  font-weight: var(--fw-medium);
+}
+.theme-menu-item i:first-child {
+  width: 16px;
+  text-align: center;
+  font-size: .875rem;
+}
+.theme-menu-item span { flex: 1; }
+.theme-check {
+  font-size: .7rem;
+  color: var(--clr-gold);
+  margin-left: auto;
+}
+
+/* Position refinement inside the admin topbar */
+#theme-toggle-wrap-admin-inner .theme-menu,
+#theme-menu-admin {
+  right: 0;
+  top: calc(100% + 6px);
+}
+
+/* ============================================================
+   ZENMARKET v30 — ADMIN MOBILE ENHANCEMENTS
+   ============================================================ */
+
+/* ── ADMIN SIDEBAR TOGGLE BUTTON VISIBILITY ─────────────── */
+@media (max-width: 900px) {
+  .admin-sidebar-toggle { display: flex !important; }
+}
+
+/* ── ADMIN MAIN — NO MARGIN ON MOBILE ───────────────────── */
+@media (max-width: 900px) {
+  .admin-main { margin-left: 0 !important; }
+}
+
+/* ── ADMIN SIDEBAR — SLIDE OFF-CANVAS ───────────────────── */
+@media (max-width: 900px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+    transition: transform var(--t-slow), box-shadow var(--t-slow);
+  }
+  .admin-sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* ── ADMIN SECTION DIVIDER — dash-section spacing ───────── */
+@media (max-width: 640px) {
+  .dash-section { margin-bottom: var(--sp-4); }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-2);
+  }
+  .section-header .btn-group {
+    display: flex;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+}
+
+/* ── ADMIN PAGE CARDS — compact on mobile ────────────────── */
+@media (max-width: 640px) {
+  .admin-card,
+  .card {
+    padding: var(--sp-4) var(--sp-3);
+    border-radius: var(--r-lg);
+  }
+  .card-header {
+    padding: var(--sp-3) var(--sp-4);
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+  .card-body { padding: var(--sp-3) var(--sp-4); }
+  .card-footer { padding: var(--sp-3) var(--sp-4); }
+}
+
+/* ── RESPONSIVE ORDER DETAIL GRID ────────────────────────── */
+@media (max-width: 900px) {
+  .order-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── RESPONSIVE PRODUCT EDIT GRID ────────────────────────── */
+@media (max-width: 768px) {
+  .product-edit-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── ADMIN ORDERS TABLE — compact on small screens ───────── */
+@media (max-width: 640px) {
+  .data-table .orders-action-cell .btn {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  /* Inline order customer info — compact */
+  .order-customer .cust-email { display: none; }
+}
+
+/* ── ADMIN TOPBAR SEARCH (if present) ────────────────────── */
+@media (max-width: 768px) {
+  .admin-topbar-search {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .admin-topbar-search {
+    display: none !important;
+  }
+}
+
+/* ── ACTIVE SIDEBAR INDICATOR — THICKER ON TOUCH ────────── */
+@media (max-width: 900px) {
+  .sidebar-link.active::before {
+    width: 4px;
+    top: 6px;
+    bottom: 6px;
+  }
+  .sidebar-link {
+    padding: var(--sp-3) var(--sp-3);
+    min-height: 46px;
+  }
+}
+
+/* ── ADMIN KPI CARD — TOUCH FRIENDLY HOVER ───────────────── */
+@media (hover: none) {
+  .kpi-card:active {
+    transform: scale(.98);
+    transition: transform .1s;
+  }
+  .admin-topbar-btn:active {
+    background: var(--clr-surface);
+    color: var(--clr-gold);
+  }
+  .sidebar-link:active {
+    background: var(--clr-gold-bg);
+    color: var(--clr-gold);
+  }
+}
+
+/* ── PRODUCT THUMBNAIL — larger on mobile ────────────────── */
+@media (max-width: 640px) {
+  .prod-thumb {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ── BULK ACTION BAR — full width on mobile ─────────────── */
+@media (max-width: 640px) {
+  #bulk-delete-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .bulk-action-bar {
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-3);
+  }
+  .bulk-action-bar .btn { width: 100%; justify-content: center; }
+}
+
+/* ── ADMIN FORM GROUPS — FULL WIDTH ON MOBILE ─────────────── */
+@media (max-width: 640px) {
+  .admin-form .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .admin-form .form-row .form-group { width: 100%; }
+  .admin-form .form-control { min-height: 46px; }
+  .admin-form textarea.form-control { min-height: 100px; }
+
+  /* Save button — full width */
+  .admin-form-actions .btn-primary {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+    font-size: var(--fs-base);
+  }
+}
+
+/* ── TOGGLE SWITCH — LARGER ON TOUCH ─────────────────────── */
+@media (max-width: 640px) {
+  .toggle-track {
+    width: 44px;
+    height: 24px;
+  }
+  .toggle-track::after {
+    width: 18px;
+    height: 18px;
+  }
+  .toggle input:checked + .toggle-track::after {
+    transform: translateX(20px);
+  }
+}
+
+/* ── ADMIN PAGINATION — CENTERED ─────────────────────────── */
+@media (max-width: 640px) {
+  .admin-table-footer {
+    flex-direction: column;
+    gap: var(--sp-3);
+    align-items: center;
+    text-align: center;
+    padding: var(--sp-3);
+  }
+  .admin-table-footer .pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--sp-1);
+  }
+  .admin-table-footer .pagination .btn {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0;
+    font-size: var(--fs-sm);
+  }
+  .admin-pagination-info { font-size: var(--fs-xs); }
+}
+
+/* ── NOTIFICATION BELL BADGE ─────────────────────────────── */
+.admin-notif-badge {
+  position: absolute;
+  top: 4px; right: 4px;
+  min-width: 16px; height: 16px;
+  background: var(--clr-error);
+  color: #fff;
+  border-radius: var(--r-full);
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  line-height: 1;
+  font-family: var(--ff-mono);
+  border: 2px solid var(--clr-bg-2);
+  pointer-events: none;
+}
+
+/* ── ADMIN SWIPE GESTURE HINT ─────────────────────────────── */
+@media (max-width: 900px) {
+  /* Visual edge indicator for swipeable sidebar */
+  .admin-shell::before {
+    content: '';
+    position: fixed;
+    left: 0; top: 25%; bottom: 25%;
+    width: 4px;
+    background: linear-gradient(to right, var(--clr-gold-dim), transparent);
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    opacity: .3;
+    pointer-events: none;
+    z-index: calc(var(--z-sticky) - 2);
+    transition: opacity var(--t-fast);
+  }
+  .admin-sidebar.open ~ .admin-main .admin-shell::before { opacity: 0; }
+}
+
+/* ── PRINT OVERRIDES FOR ADMIN ───────────────────────────── */
+@media print {
+  .admin-sidebar,
+  .admin-topbar,
+  .admin-sidebar-toggle,
+  .admin-topbar-btn,
+  .admin-notif-badge { display: none !important; }
+  .admin-main { margin-left: 0 !important; }
+  .admin-content { padding: 0 !important; }
+}
+
+/* ── ADMIN TOOLBAR SEARCH BAR ────────────────────────────── */
+/* storefront.css applies pill border-radius to .search-bar globally;
+   override it back to rectangular for all admin pages.          */
+.admin-toolbar .search-bar,
+.admin-layout  .search-bar {
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.admin-toolbar .search-bar input,
+.admin-layout  .search-bar input {
+  border-radius: 0;
+  flex: 1;
+  min-width: 0;
+}
+.admin-toolbar .search-bar button,
+.admin-layout  .search-bar button {
+  border-radius: 0;
+  flex-shrink: 0;
+}

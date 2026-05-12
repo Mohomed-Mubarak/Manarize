@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+#page-loader{position:fixed;inset:0;background:#0d0f14;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .3s,visibility .3s;animation:_ldrTimeout 0s 3s forwards}
+[data-theme="light"] #page-loader{background:#f4f5f9}
+[data-theme="warm"] #page-loader{background:#0f0c07}
+@keyframes _ldrTimeout{to{opacity:0;visibility:hidden;pointer-events:none}}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:Georgia,serif;font-size:1.75rem;color:#c9a84c;letter-spacing:.05em}
+.loader-dots{display:flex;gap:.5rem}
+.loader-dots span{width:8px;height:8px;border-radius:50%;background:#a07a30;animation:_ldrDot 1.2s ease infinite}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes _ldrDot{0%,100%{opacity:.3}50%{opacity:1}}
+#page-progress{position:fixed;top:0;left:0;height:2px;background:#c9a84c;z-index:10000;width:0;transition:width .3s ease}
+#page-progress.active{animation:_ldrProgress 1.5s ease-out forwards}
+@keyframes _ldrProgress{0%{width:0}70%{width:85%}100%{width:95%}}
+#page-progress.done{width:100%!important}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Edit Product — Manarize Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+ <link rel="stylesheet" href="../css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="../css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="../css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="../css/pages/admin-product-edit.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/admin/admin-product-edit.js?v=561e7c7d">
+
+</head>
+<body>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+    <div>
+      <h2 id="edit-page-title" style="font-size:1.375rem">Add New Product</h2>
+      <div id="product-id-display" style="font-family:var(--ff-mono);font-size:.8125rem;color:var(--clr-text-3);margin-top:.25rem"></div>
+    </div>
+    <div style="display:flex;gap:.75rem">
+      <a href="products.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Back</a>
+      <button class="btn btn-primary" id="save-product-btn"><i class="fa-solid fa-circle-check"></i> Save Product</button>
+    </div>
+  </div>
+
+  <form id="product-form" novalidate>
+    <div class="product-edit-grid">
+      <!-- Left: Main fields -->
+      <div>
+        <div class="card" style="margin-bottom:1.5rem">
+          <h4 style="font-size:.9375rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">Basic Information</h4>
+          <div class="form-group">
+            <label class="form-label required">Product Name</label>
+            <input class="form-control" type="text" id="prod-name" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Product ID</label>
+              <input class="form-control" type="text" id="prod-id" readonly style="opacity:.6">
+              <div class="form-hint">Auto-generated</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Slug</label>
+              <input class="form-control" type="text" id="prod-slug">
+              <div class="form-hint">Auto-generated from name</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" id="prod-desc" rows="5" placeholder="Describe the product…"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label required">SKU</label>
+              <input class="form-control" type="text" id="prod-sku" placeholder="e.g. SKU-ELC-0001">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Weight</label>
+              <input class="form-control" type="text" id="prod-weight" placeholder="e.g. 0.5kg">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tags</label>
+            <input class="form-control" type="text" id="prod-tags" placeholder="Comma-separated tags">
+            <div class="form-hint">e.g. wireless, bluetooth, audio</div>
+          </div>
+
+          <!-- Hashtags -->
+          <div class="form-group">
+            <label class="form-label">Hashtags <span style="font-size:.75rem;color:var(--clr-text-3);font-weight:400">— for SEO &amp; discoverability</span></label>
+            <div class="hashtag-input-wrap" id="hashtag-wrap">
+              <div class="hashtag-pills" id="hashtag-pills"></div>
+              <input class="hashtag-input" id="hashtag-input" type="text" placeholder="Type a hashtag and press Enter or Space…" autocomplete="off">
+            </div>
+            <div class="form-hint">e.g. #nike #running #sports — press <kbd>Enter</kbd> or <kbd>Space</kbd> to add</div>
+            <input type="hidden" id="prod-hashtags">
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="card" style="margin-bottom:1.5rem">
+          <h4 style="font-size:.9375rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">Pricing & Stock</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label required">Price (LKR)</label>
+              <input class="form-control" type="number" id="prod-price" min="0" step="50" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Compare Price (LKR)</label>
+              <input class="form-control" type="number" id="prod-compare" min="0" step="50">
+              <div class="form-hint">Shows strikethrough original price</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label required">Stock Quantity</label>
+              <input class="form-control" type="number" id="prod-stock" min="0" value="0" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Category</label>
+              <select class="form-control" id="prod-category" required>
+                <option value="">Select Category</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Variants -->
+        <div class="card" style="margin-bottom:1.5rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">
+            <h4 style="font-size:.9375rem">Variants</h4>
+            <button type="button" class="btn btn-ghost btn-sm" id="add-variant-btn">
+              <i class="fa-solid fa-plus"></i> Add Variant
+            </button>
+          </div>
+          <div id="variants-list">
+            <p style="color:var(--clr-text-3);font-size:.875rem">No variants. Click "Add Variant" to add color, size options, etc.</p>
+          </div>
+        </div>
+
+        <!-- SEO -->
+        <div class="card" style="margin-bottom:1.5rem">
+          <h4 style="font-size:.9375rem;margin-bottom:.375rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border);display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-magnifying-glass-chart" style="color:var(--clr-gold);font-size:.875rem"></i> SEO
+          </h4>
+          <p style="font-size:.8rem;color:var(--clr-text-3);margin-bottom:1rem">Controls how this product appears in Google search results.</p>
+
+          <div class="form-group">
+            <label class="form-label">Meta Title</label>
+            <input class="form-control" type="text" id="seo-title" placeholder="e.g. Nike ProRun Air Running Shoes — Buy Online in Sri Lanka" maxlength="70">
+            <div class="seo-char-row">
+              <span class="form-hint">Recommended: 50–70 characters</span>
+              <span class="seo-counter" id="seo-title-count">0 / 70</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Meta Description</label>
+            <textarea class="form-control" id="seo-desc" rows="3" placeholder="e.g. Shop the Nike ProRun Air Running Shoes in Sri Lanka. Lightweight, breathable, and built for performance. Free delivery available." maxlength="160"></textarea>
+            <div class="seo-char-row">
+              <span class="form-hint">Recommended: 120–160 characters</span>
+              <span class="seo-counter" id="seo-desc-count">0 / 160</span>
+            </div>
+          </div>
+
+          <!-- Live SERP Preview -->
+          <div class="seo-preview-label">Search Result Preview</div>
+          <div class="seo-preview">
+            <div class="seo-preview__url">manarize.lk › products › <span id="seo-preview-slug">product-slug</span></div>
+            <div class="seo-preview__title" id="seo-preview-title">Product title will appear here</div>
+            <div class="seo-preview__desc" id="seo-preview-desc">Meta description will appear here. Make it compelling to improve click-through rate from Google.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Images + Status -->
+      <div>
+        <!-- Images -->
+        <div class="card" style="margin-bottom:1.5rem">
+          <h4 style="font-size:.9375rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">Product Images</h4>
+
+          <div class="form-group">
+            <label class="form-label">Image URL</label>
+            <div style="display:flex;gap:.5rem">
+              <input class="form-control" type="url" id="img-url-input" placeholder="https://…">
+              <button type="button" class="btn btn-outline btn-sm" id="add-img-url-btn">
+                <i class="fa-solid fa-plus"></i> Add
+              </button>
+            </div>
+            <div class="form-hint">Add image via URL or upload below</div>
+          </div>
+
+          <div class="image-upload-zone" id="upload-zone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Drag & drop images here<br>or click to browse</p>
+            <input type="file" id="img-file-input" accept="image/*" multiple style="display:none">
+          </div>
+
+          <div class="image-previews" id="image-previews" style="margin-top:1rem"></div>
+          <div id="img-urls-data" style="display:none"></div>
+        </div>
+
+        <!-- Status & Visibility -->
+        <div class="card">
+          <h4 style="font-size:.9375rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--clr-border)">Status & Visibility</h4>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:.875rem;font-weight:500">Active</div>
+                <div style="font-size:.75rem;color:var(--clr-text-3)">Product visible in store</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="prod-active" checked>
+                <div class="toggle-track"></div>
+                <div class="toggle-thumb"></div>
+              </label>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:.875rem;font-weight:500">Featured</div>
+                <div style="font-size:.75rem;color:var(--clr-text-3)">Show on homepage</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="prod-featured">
+                <div class="toggle-track"></div>
+                <div class="toggle-thumb"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+<script type="module" src="/dist/js/admin/admin-product-edit.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

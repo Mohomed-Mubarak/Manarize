@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shopping Cart — Manarize</title>
+  <meta name="description" content="Review your cart and proceed to checkout.">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+ <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/cart.css?v=561e7c7d" media="print" data-defer="true">
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/cart-page.js?v=561e7c7d">
+
+</head>
+<body>
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader"><div class="loader-logo">Manarize</div><div class="loader-dots"><span></span><span></span><span></span></div></div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <div class="page-header">
+      <div class="container">
+        <div class="breadcrumb" style="margin-bottom:.75rem">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right" style="font-size:.625rem"></i></span>
+          <span class="current">Shopping Cart</span>
+        </div>
+        <h1>Shopping Cart</h1>
+      </div>
+    </div>
+
+    <div class="container section-sm">
+      <div class="cart-layout">
+        <!-- Cart Items -->
+        <div>
+          <div id="cart-items-container">
+            <!-- Rendered by JS -->
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="shop.html" class="btn btn-ghost">
+              <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+            </a>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="cart-summary">
+          <h3 style="font-size:1.125rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--clr-border)">Order Summary</h3>
+
+          <!-- Coupon -->
+          <div class="coupon-row">
+            <input class="form-control" type="text" id="coupon-input" placeholder="Coupon code">
+            <button class="btn btn-outline" id="apply-coupon">Apply</button>
+          </div>
+          <div id="coupon-msg" style="font-size:.8125rem;margin-bottom:.75rem"></div>
+
+          <!-- Totals -->
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal" style="font-family:var(--ff-mono)">Rs. 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span style="color:var(--clr-text-3);font-size:.875rem" id="shipping-note">Calculated at checkout</span>
+          </div>
+          <div class="summary-row">
+            <span>Discount</span>
+            <span id="summary-discount" style="font-family:var(--ff-mono);color:var(--clr-success)">Rs. 0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span class="val" id="summary-total">Rs. 0</span>
+          </div>
+
+          <a href="checkout.html" class="btn btn-primary btn-block btn-lg" id="checkout-btn" style="margin-top:1rem">
+            <i class="fa-solid fa-lock"></i> Proceed to Checkout
+          </a>
+
+          <div style="margin-top:1rem;text-align:center">
+            <div style="display:flex;justify-content:center;gap:.75rem;margin-bottom:.5rem">
+              <i class="fa-solid fa-shield-halved" style="color:var(--clr-text-3)"></i>
+              <span style="font-size:.75rem;color:var(--clr-text-3)">Secure 256-bit SSL Encryption</span>
+            </div>
+            <div style="display:flex;justify-content:center;gap:.5rem">
+              <span class="payment-logo">VISA</span>
+              <span class="payment-logo">MC</span>
+              <span class="payment-logo">PayHere</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script type="module" src="/dist/js/cart-page.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+</html>

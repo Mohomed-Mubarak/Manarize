@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/dist/js/sw-cleanup.js?v=561e7c7d" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <meta charset="UTF-8">
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  
+<script>(function(){var t=localStorage.getItem("zm_theme");t&&t!=="dark"&&document.documentElement.setAttribute("data-theme",t)})();</script>
+<!-- zm-critical-loader-css -->
+  <!-- CRITICAL: Inline loader CSS — prevents black-screen if external CSS is slow -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Checkout — Manarize</title>
+  <meta name="description" content="Complete your purchase securely.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f5f9" media="(prefers-color-scheme: light)">
+
+  
+  </noscript>
+    <!-- Fonts: deferred (non-blocking, CSP-safe) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" data-defer="true">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=561e7c7d" media="print" data-defer="true">
+  <link rel="preload" href="css/loader.css?v=561e7c7d" as="style">
+
+  <link rel="stylesheet" href="css/loader.css?v=561e7c7d">
+  <link rel="stylesheet" href="css/pages/checkout.css?v=561e7c7d" media="print" data-defer="true">
+  <script src="/dist/js/cursor-init.js?v=561e7c7d" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" media="print" data-defer="true" crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
+  <script src="/dist/js/defer-styles.js?v=561e7c7d" defer></script>
+  <link rel="modulepreload" href="/dist/js/checkout.js?v=561e7c7d">
+
+</head>
+
+<body>
+
+  <!--cursorly animation-->
+  <script src="https://cdn.jsdelivr.net/gh/iamashruu/cursorly.js@latest/dist/cursorly.min.js" defer data-desktop-only="true"></script>
+  
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="page-loader">
+    <div class="loader-logo">Manarize</div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+  <div id="page-progress"></div>
+  <div id="toast-container"></div>
+
+  <main id="main" class="page-enter">
+    <div class="page-header">
+      <div class="container">
+        <h1>Checkout</h1>
+        <div
+          style="display:flex;align-items:center;gap:.75rem;margin-top:.75rem;color:var(--clr-success);font-size:.875rem">
+          <i class="fa-solid fa-lock"></i> Secure Checkout
+        </div>
+      </div>
+    </div>
+
+    <div class="container section-sm">
+      <form id="checkout-form" novalidate>
+        <div class="checkout-layout">
+          <!-- Left: Form -->
+          <div>
+            <!-- Contact -->
+            <div class="checkout-section">
+              <h3>
+                <span class="step-num">1</span>
+                Contact Information
+              </h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">First Name</label>
+                  <input class="form-control" type="text" id="first-name" name="firstName" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Last Name</label>
+                  <input class="form-control" type="text" id="last-name" name="lastName" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">Email Address</label>
+                  <div class="input-group">
+                    <i class="input-icon fa-solid fa-envelope"></i>
+                    <input class="form-control" type="email" id="email" name="email" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Phone Number</label>
+                  <div class="input-group">
+                    <i class="input-icon fa-solid fa-phone"></i>
+                    <input class="form-control" type="tel" id="phone" name="phone" placeholder="+94 XX XXX XXXX" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <div class="checkout-section">
+              <h3>
+                <span class="step-num">2</span>
+                Shipping Address
+              </h3>
+              <div class="form-group">
+                <label class="form-label required">Address Line 1</label>
+                <input class="form-control" type="text" id="addr-line1" name="addrLine1" placeholder="House No, Street"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Address Line 2</label>
+                <input class="form-control" type="text" id="addr-line2" name="addrLine2"
+                  placeholder="Apartment, suburb, landmark">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">City / Town</label>
+                  <input class="form-control" type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">District</label>
+                  <select class="form-control" id="district" name="district" required>
+                    <option value="">Select District</option>
+                    <option>Colombo</option>
+                    <option>Gampaha</option>
+                    <option>Kalutara</option>
+                    <option>Kandy</option>
+                    <option>Matale</option>
+                    <option>Nuwara Eliya</option>
+                    <option>Galle</option>
+                    <option>Matara</option>
+                    <option>Hambantota</option>
+                    <option>Jaffna</option>
+                    <option>Kilinochchi</option>
+                    <option>Mannar</option>
+                    <option>Vavuniya</option>
+                    <option>Mullaitivu</option>
+                    <option>Trincomalee</option>
+                    <option>Batticaloa</option>
+                    <option>Ampara</option>
+                    <option>Kurunegala</option>
+                    <option>Puttalam</option>
+                    <option>Anuradhapura</option>
+                    <option>Polonnaruwa</option>
+                    <option>Badulla</option>
+                    <option>Monaragala</option>
+                    <option>Ratnapura</option>
+                    <option>Kegalle</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">Province</label>
+                  <select class="form-control" id="province" name="province" required>
+                    <option value="">Select Province</option>
+                    <option>Western</option>
+                    <option>Central</option>
+                    <option>Southern</option>
+                    <option>Northern</option>
+                    <option>Eastern</option>
+                    <option>North Western</option>
+                    <option>North Central</option>
+                    <option>Uva</option>
+                    <option>Sabaragamuwa</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Postal Code</label>
+                  <input class="form-control" type="text" id="zip" name="zip" placeholder="Optional">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Order Notes</label>
+                <textarea class="form-control" id="notes" name="notes"
+                  placeholder="Special delivery instructions, gift messages, etc." rows="3"></textarea>
+              </div>
+
+              <!-- Shipping rate indicator -->
+              <div id="shipping-indicator"
+                style="display:none;padding:.875rem 1rem;background:var(--clr-bg-2);border-radius:var(--r-md);font-size:.875rem;border:1px solid var(--clr-border)">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem">
+                  <i class="fa-solid fa-truck" style="color:var(--clr-gold)"></i>
+                  <span>Shipping to <strong id="shipping-district-name"></strong>:
+                    <span id="shipping-rate-val" style="font-family:var(--ff-mono);color:var(--clr-gold);font-weight:600"></span>
+                  </span>
+                </div>
+                <div id="shipping-days-val" style="display:none;font-size:.8125rem;color:var(--clr-text-3);padding-left:1.4rem">
+                  <i class="fa-regular fa-clock" style="margin-right:.35rem"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="checkout-section">
+              <h3>
+                <span class="step-num">3</span>
+                Payment Method
+              </h3>
+              <div class="payment-methods">
+                <label class="payment-option selected">
+                  <input type="radio" name="payment" value="payhere" checked>
+                  <div class="payment-option-label">
+                    <div class="payment-option-name"><i class="fa-solid fa-credit-card"
+                        style="color:var(--clr-info)"></i> Online Payment</div>
+                    <div class="payment-option-desc">Visa, Mastercard, AMEX via PayHere — instant verification</div>
+                  </div>
+                  <span class="payment-option-logo">PayHere</span>
+                </label>
+
+                <label class="payment-option bank-option">
+                  <input type="radio" name="payment" value="bank">
+                  <div class="payment-option-label">
+                    <div class="payment-option-name"><i class="fa-solid fa-building-columns"
+                        style="color:var(--clr-gold)"></i> Bank Transfer</div>
+                    <div class="payment-option-desc">Direct bank transfer — order confirmed after payment proof</div>
+                  </div>
+                  <span class="payment-option-logo"
+                    style="background:var(--clr-gold-bg);color:var(--clr-gold);border-color:var(--clr-gold-dim)">Bank</span>
+                </label>
+
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="cod">
+                  <div class="payment-option-label">
+                    <div class="payment-option-name"><i class="fa-solid fa-money-bill-wave"
+                        style="color:var(--clr-success)"></i> Cash on Delivery</div>
+                    <div class="payment-option-desc">Pay cash when your order arrives at your door</div>
+                  </div>
+                  <span class="payment-option-logo">COD</span>
+                </label>
+              </div>
+
+              <!-- Bank transfer details panel (shown when bank selected) -->
+              <div id="bank-details-panel" style="display:none;margin-top:1rem">
+                <div
+                  style="background:var(--clr-bg-2);border:1px solid var(--clr-gold-dim);border-radius:var(--r-lg);padding:1.25rem">
+                  <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1rem">
+                    <i class="fa-solid fa-building-columns" style="color:var(--clr-gold);font-size:1.125rem"></i>
+                    <strong style="color:var(--clr-text)">Bank Account Details</strong>
+                  </div>
+                  <div id="bank-account-info"
+                    style="display:grid;grid-template-columns:auto 1fr;gap:.5rem .75rem;font-size:.875rem">
+                    <!-- Populated by JS from admin settings -->
+                  </div>
+                  <div
+                    style="margin-top:1rem;padding:.75rem;background:var(--clr-warning-bg);border-radius:var(--r-md);font-size:.8125rem;color:var(--clr-warning)">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    After transferring, upload your payment slip below. Your order will be confirmed once payment is
+                    verified.
+                  </div>
+                </div>
+
+                <!-- Payment proof upload -->
+                <div class="form-group" style="margin-top:1rem">
+                  <label class="form-label">Upload Payment Slip <span
+                      style="color:var(--clr-text-3);font-weight:400">(optional — you can also send via
+                      WhatsApp)</span></label>
+                  <div id="slip-upload-zone"
+                    style="border:2px dashed var(--clr-border);border-radius:var(--r-md);padding:1.5rem;text-align:center;cursor:pointer;transition:all var(--t-base)">
+                    <i class="fa-solid fa-cloud-arrow-up"
+                      style="font-size:1.75rem;color:var(--clr-text-3);margin-bottom:.5rem;display:block"></i>
+                    <p style="font-size:.875rem;color:var(--clr-text-3)">Click or drag &amp; drop your payment slip
+                      (JPG, PNG, PDF)</p>
+                    <input type="file" id="slip-file" accept="image/*,.pdf" style="display:none">
+                  </div>
+                  <div id="slip-preview" style="display:none;margin-top:.75rem"></div>
+                </div>
+
+                <!-- Bank reference number -->
+                <div class="form-group">
+                  <label class="form-label">Bank Reference / Transaction ID <span
+                      style="color:var(--clr-text-3)">(optional)</span></label>
+                  <div class="input-group">
+                    <i class="input-icon fa-solid fa-hashtag"></i>
+                    <input class="form-control" type="text" id="bank-ref" placeholder="e.g. TXN123456789">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="place-order-btn">
+              <i class="fa-solid fa-lock"></i>
+              <span>Place Order</span>
+            </button>
+          </div>
+
+          <!-- Right: Order Summary -->
+          <div>
+            <div class="cart-summary" style="position:sticky;top:calc(var(--nav-h) + 1rem)">
+              <h3
+                style="font-size:1.125rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--clr-border)">
+                Order Summary
+              </h3>
+              <div id="checkout-items">
+                <!-- Rendered by JS -->
+              </div>
+              <hr>
+              <div class="summary-row"><span>Subtotal</span><span id="co-subtotal"
+                  style="font-family:var(--ff-mono)">Rs. 0</span></div>
+              <div class="summary-row"><span>Shipping</span><span id="co-shipping"
+                  style="font-family:var(--ff-mono)">Rs. 0</span></div>
+              <div class="summary-row" id="co-discount-row" style="display:none"><span>Discount</span><span
+                  id="co-discount" style="font-family:var(--ff-mono);color:var(--clr-success)"></span></div>
+              <div class="summary-row total">
+                <span>Total</span>
+                <span class="val" id="co-total">Rs. 0</span>
+              </div>
+
+              <div style="margin-top:1.5rem;font-size:.8125rem;color:var(--clr-text-3);text-align:center">
+                <i class="fa-solid fa-shield-halved" style="color:var(--clr-text-3);margin-right:.25rem"></i>
+                Your data is secured with 256-bit SSL
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+<script type="module" src="/dist/js/checkout.js?v=561e7c7d"></script>
+  <script type="module" src="/dist/js/session-guard.js?v=561e7c7d"></script>
+</body>
+
+</html>

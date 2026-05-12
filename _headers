@@ -1,0 +1,97 @@
+# ============================================================
+# MANARIZE — Cloudflare / CDN Headers  (Performance Optimized)
+# ============================================================
+# Applied at CDN edge (Cloudflare) before Vercel headers.
+#
+# CLOUDFLARE SETUP:
+#   1. Add domain → set nameservers to Cloudflare
+#   2. DNS A → Vercel IP  (orange cloud ON)
+#   3. SSL/TLS → Full (Strict)
+#   4. Speed → Auto Minify: HTML ✓  CSS ✓  JS ✓
+#   5. Network → HTTP/3 (QUIC) → ON
+#   6. Network → 0-RTT Connection Resumption → ON
+#   7. Speed → Rocket Loader → OFF  (breaks ES modules)
+#   8. Speed → Mirage → OFF
+#   9. Security → WAF → Managed Ruleset → ON
+#  10. Security → Bot Fight Mode → ON
+#
+# CLOUDFLARE CACHE RULES:
+#   Rule 1: /api/*       → Cache: BYPASS
+#   Rule 2: *.css|*.woff2 → Cache: AGGRESSIVE (1 year)
+#   Rule 3: *.html       → Cache: RESPECT ORIGIN (max-age=0)
+# ============================================================
+
+# ── All pages — security + compression ──────────────────────────
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://www.payhere.lk")
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Cross-Origin-Resource-Policy: same-origin
+  Vary: Accept-Encoding
+
+# ── API routes — never cache ─────────────────────────────────────
+/api/*
+  Cache-Control: no-store, no-cache, must-revalidate
+  X-Robots-Tag: noindex, nofollow
+  Pragma: no-cache
+
+# ── CSS — immutable long cache ───────────────────────────────────
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+# ── JS — 1 day fresh, 7 day stale-while-revalidate ──────────────
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Vary: Accept-Encoding
+
+/js/env.js
+  Cache-Control: no-store, no-cache, must-revalidate
+
+/sw.js
+  Cache-Control: no-store, no-cache, must-revalidate
+  Service-Worker-Allowed: /
+
+# ── Images — 30 day cache ───────────────────────────────────────
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/*.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/*.jpeg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/*.svg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/*.ico
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+# ── Fonts — immutable ───────────────────────────────────────────
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── HTML — always revalidate ────────────────────────────────────
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ── Sitemaps / SEO files ────────────────────────────────────────
+/sitemap.xml
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/robots.txt
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout.html
+Disallow: /order-success.html
+Disallow: /profile.html
+Disallow: /cart.html
+Disallow: /login.html
+
+# Block aggressive crawlers from hammering the search page
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+Sitemap: https://manarize.lk/sitemap.xml

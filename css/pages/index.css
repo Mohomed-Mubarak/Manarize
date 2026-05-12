@@ -1,0 +1,181 @@
+/* =============================================================================
+   INDEX.CSS — Homepage (index.html) Page-Specific Styles
+   -----------------------------------------------------------------------------
+   Purpose : Covers the animated hero section, cursor-following gold square,
+   particle canvas overlay, customer review cards, and responsive hero grid.
+=============================================================================== */
+
+/* ── Particle canvas overlay on hero ── */
+    
+/* ── Hero Section ─── Position context for particle canvas overlay ──────────── */
+.hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    
+/* ── Particle Canvas ─── Transparent overlay for animated gold particles ─── */
+#particle-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: var(--z-base);
+    }
+
+    /* ── anime.js createAnimatable square ── */
+    
+/* ── Hero Media Demo ─── Interactive product showcase area ─────────────────── */
+/* overflow changed from hidden → visible so .hero-badge (left:-1.5rem) is not clipped.
+   The <img> already carries border-radius:12px inline; scale-on-hover overflow is
+   contained by the parent .hero which keeps overflow:hidden. */
+#hero-demo {
+      cursor: none;
+      overflow: visible;
+      border-radius: 12px;
+    }
+
+    
+/* ── Cursor Square ─── Animated gold square that follows the mouse ──────────── */
+.square {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(201, 168, 76, .9), rgba(226, 192, 110, .6));
+      border: 1.5px solid rgba(201, 168, 76, .7);
+      box-shadow:
+        0 0 18px rgba(201, 168, 76, .45),
+        0 0 40px rgba(201, 168, 76, .2),
+        inset 0 1px 0 rgba(255, 255, 255, .25);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: var(--z-raised);
+      backdrop-filter: blur(4px);
+      transition: width .2s ease, height .2s ease, border-radius .2s ease;
+    }
+
+    .square::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 7px;
+      background: rgba(201, 168, 76, .15);
+      border: 1px solid rgba(201, 168, 76, .3);
+    }
+
+    /* Cursor glow — larger, softer blur behind square */
+    
+/* ── Cursor Glow ─── Soft radial blur behind the cursor square ─────────────── */
+.cursor-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 168, 76, .18) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: calc(var(--z-raised) - 1);
+    }
+
+    /* Hero media hover — scale image slightly */
+    
+/* ── Hero Image Hover ─── Subtle scale-up on hover ─────────────────────────── */
+#hero-demo:hover img {
+      transform: scale(1.03);
+    }
+
+    #hero-demo img {
+      transition: transform .6s ease;
+    }
+
+    /* ── Homepage Reviews Grid ── */
+    
+/* ── Reviews Grid ─── Auto-fill grid of customer review cards ──────────────── */
+.reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    
+/* ── Review Card ────────────────────────────────────────────────────────────── */
+.review-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color var(--t-base), box-shadow var(--t-base), transform var(--t-base);
+    }
+    .review-card:hover {
+      border-color: var(--clr-gold-dim);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .review-card__stars { color: var(--clr-warning); font-size: .875rem; display:flex; gap:2px; }
+    .review-card__text {
+      font-size: .9rem;
+      color: var(--clr-text-2);
+      line-height: 1.65;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .review-card__text::before { content: '\201C'; color: var(--clr-gold); font-size: 1.5rem; line-height: 0; vertical-align: -.4em; margin-right: 2px; }
+    .review-card__footer { display: flex; align-items: center; gap: .625rem; margin-top: .25rem; }
+    .review-card__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-gold), var(--clr-gold-dim));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: .8125rem; color: #000; flex-shrink: 0;
+    }
+    .review-card__author { font-size: .8125rem; font-weight: 600; color: var(--clr-text); }
+    .review-card__product { font-size: .75rem; color: var(--clr-text-3); margin-top: 1px; }
+    .review-card__date { font-size: .7rem; color: var(--clr-text-3); margin-left: auto; }
+    @media(max-width:600px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+          
+/* ── Mobile Hero ─── Stack hero columns on small screens ───────────────────── */
+@media(max-width:900px) {
+            #hero-grid {
+              grid-template-columns: 1fr !important;
+              min-height: auto !important;
+              gap: 2rem !important;
+              padding: 3rem 0 !important
+            }
+
+            #hero-grid .hero-content {
+              text-align: center
+            }
+
+            #hero-grid .hero-eyebrow {
+              justify-content: center
+            }
+
+            #hero-grid .hero-cta {
+              justify-content: center
+            }
+
+            #hero-grid .hero-search-wrap {
+              margin-left: auto;
+              margin-right: auto
+            }
+
+            #hero-grid #hero-demo {
+              max-width: 420px;
+              margin: 0 auto;
+              width: 100%
+            }
+          }
